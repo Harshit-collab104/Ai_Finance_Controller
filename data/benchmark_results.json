@@ -1,0 +1,2490 @@
+{
+  "execution_summary": {
+    "total_processing_time_sec": 7.127,
+    "avg_processing_time_per_company_sec": 0.1296
+  },
+  "evaluation_summary": {
+    "target_col": "cash",
+    "companies_evaluated": 51,
+    "total_observations": 204,
+    "execution_time_sec": 6.428,
+    "avg_time_per_company_sec": 0.1169,
+    "overall_ml_metrics": {
+      "mae": 10.74,
+      "rmse": 19.99,
+      "mape": 12.28
+    },
+    "overall_naive_metrics": {
+      "mae": 61.73,
+      "rmse": 112.21,
+      "mape": 16.92
+    },
+    "overall_ma_metrics": {
+      "mae": 81.9,
+      "rmse": 144.04,
+      "mape": 23.44
+    },
+    "category_summary": {
+      "Growing": {
+        "mae": 16.68,
+        "rmse": 20.38,
+        "mape": 2.55
+      },
+      "Stable": {
+        "mae": 4.23,
+        "rmse": 5.46,
+        "mape": 1.48
+      },
+      "Declining": {
+        "mae": 1.67,
+        "rmse": 2.41,
+        "mape": 41.84
+      },
+      "Highly Leveraged": {
+        "mae": 7.25,
+        "rmse": 10.99,
+        "mape": 5.34
+      },
+      "Cash-Rich": {
+        "mae": 26.36,
+        "rmse": 37.93,
+        "mape": 1.69
+      },
+      "Cash-Constrained": {
+        "mae": 0.81,
+        "rmse": 1.6,
+        "mape": 31.71
+      },
+      "Highly Volatile": {
+        "mae": 17.18,
+        "rmse": 30.49,
+        "mape": 11.74
+      }
+    },
+    "company_evaluations": [
+      {
+        "company_id": "C001",
+        "company_name": "Apex Tech Solutions",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 11.36,
+        "rmse": 13.41,
+        "mape": 1.13,
+        "actuals": [
+          848.57,
+          928.76,
+          1000.86,
+          1096.89
+        ],
+        "predictions": [
+          851.01,
+          935.79,
+          1021.7,
+          1112.04
+        ]
+      },
+      {
+        "company_id": "C002",
+        "company_name": "Horizon Logistics",
+        "category": "Growing",
+        "selected_model": "Exponential Smoothing",
+        "mae": 25.28,
+        "rmse": 27.06,
+        "mape": 5.16,
+        "actuals": [
+          431.62,
+          463.46,
+          495.51,
+          524.06
+        ],
+        "predictions": [
+          419.83,
+          442.19,
+          464.56,
+          486.93
+        ]
+      },
+      {
+        "company_id": "C003",
+        "company_name": "Beacon Healthcare",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 14.93,
+        "rmse": 16.3,
+        "mape": 1.77,
+        "actuals": [
+          721.42,
+          787.84,
+          848.89,
+          918.15
+        ],
+        "predictions": [
+          715.62,
+          773.94,
+          833.12,
+          893.91
+        ]
+      },
+      {
+        "company_id": "C004",
+        "company_name": "Vanguard Manufacturing",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 5.94,
+        "rmse": 6.94,
+        "mape": 1.36,
+        "actuals": [
+          380.14,
+          409.29,
+          430.94,
+          460.42
+        ],
+        "predictions": [
+          380.83,
+          402.55,
+          425.43,
+          449.62
+        ]
+      },
+      {
+        "company_id": "C005",
+        "company_name": "Solaris Energy",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 14.77,
+        "rmse": 17.1,
+        "mape": 2.93,
+        "actuals": [
+          441.61,
+          468.34,
+          499.54,
+          533.25
+        ],
+        "predictions": [
+          436.17,
+          459.68,
+          482.23,
+          505.59
+        ]
+      },
+      {
+        "company_id": "C006",
+        "company_name": "Quantum Dynamics",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 22.06,
+        "rmse": 25.92,
+        "mape": 2.93,
+        "actuals": [
+          640.49,
+          695.17,
+          744.22,
+          801.0
+        ],
+        "predictions": [
+          636.67,
+          677.93,
+          718.32,
+          759.7
+        ]
+      },
+      {
+        "company_id": "C007",
+        "company_name": "Pinnacle Bio",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 27.57,
+        "rmse": 29.76,
+        "mape": 2.92,
+        "actuals": [
+          805.56,
+          897.9,
+          987.1,
+          1060.55
+        ],
+        "predictions": [
+          792.45,
+          863.53,
+          945.31,
+          1039.52
+        ]
+      },
+      {
+        "company_id": "C008",
+        "company_name": "Nexus Cloud Systems",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 24.88,
+        "rmse": 27.97,
+        "mape": 4.14,
+        "actuals": [
+          510.57,
+          558.53,
+          601.15,
+          644.77
+        ],
+        "predictions": [
+          503.87,
+          537.58,
+          570.71,
+          603.32
+        ]
+      },
+      {
+        "company_id": "C009",
+        "company_name": "Titan Heavy Industries",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 4.6,
+        "rmse": 5.38,
+        "mape": 1.03,
+        "actuals": [
+          378.92,
+          410.34,
+          446.69,
+          480.84
+        ],
+        "predictions": [
+          377.22,
+          408.33,
+          439.86,
+          472.96
+        ]
+      },
+      {
+        "company_id": "C010",
+        "company_name": "Aura Consumer Goods",
+        "category": "Growing",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 15.34,
+        "rmse": 16.39,
+        "mape": 2.11,
+        "actuals": [
+          649.82,
+          696.79,
+          734.29,
+          772.25
+        ],
+        "predictions": [
+          644.3,
+          678.88,
+          716.61,
+          751.99
+        ]
+      },
+      {
+        "company_id": "C011",
+        "company_name": "Sterling Retail",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 3.43,
+        "rmse": 4.21,
+        "mape": 1.2,
+        "actuals": [
+          259.75,
+          274.57,
+          281.38,
+          296.21
+        ],
+        "predictions": [
+          259.34,
+          269.48,
+          279.62,
+          289.76
+        ]
+      },
+      {
+        "company_id": "C012",
+        "company_name": "Frontier Aerospace",
+        "category": "Stable",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 4.7,
+        "rmse": 4.79,
+        "mape": 1.8,
+        "actuals": [
+          251.84,
+          258.92,
+          265.13,
+          274.19
+        ],
+        "predictions": [
+          246.64,
+          253.59,
+          261.99,
+          269.04
+        ]
+      },
+      {
+        "company_id": "C013",
+        "company_name": "Omni Financial",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 9.2,
+        "rmse": 9.59,
+        "mape": 2.4,
+        "actuals": [
+          355.72,
+          373.18,
+          391.5,
+          401.43
+        ],
+        "predictions": [
+          350.17,
+          364.23,
+          378.29,
+          392.34
+        ]
+      },
+      {
+        "company_id": "C014",
+        "company_name": "Atlas Infrastructure",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 1.98,
+        "rmse": 2.81,
+        "mape": 1.48,
+        "actuals": [
+          125.33,
+          129.7,
+          133.11,
+          134.92
+        ],
+        "predictions": [
+          124.85,
+          129.96,
+          135.06,
+          140.16
+        ]
+      },
+      {
+        "company_id": "C015",
+        "company_name": "Velox Medical Devices",
+        "category": "Stable",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 1.96,
+        "rmse": 2.41,
+        "mape": 0.56,
+        "actuals": [
+          320.47,
+          339.41,
+          351.96,
+          370.59
+        ],
+        "predictions": [
+          322.21,
+          337.3,
+          351.93,
+          366.62
+        ]
+      },
+      {
+        "company_id": "C016",
+        "company_name": "Echo Communications",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 1.54,
+        "rmse": 2.15,
+        "mape": 0.66,
+        "actuals": [
+          213.99,
+          222.98,
+          229.17,
+          240.72
+        ],
+        "predictions": [
+          215.07,
+          222.26,
+          229.45,
+          236.64
+        ]
+      },
+      {
+        "company_id": "C017",
+        "company_name": "Crestline Automotive",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 2.3,
+        "rmse": 2.48,
+        "mape": 0.79,
+        "actuals": [
+          274.0,
+          283.42,
+          295.35,
+          307.11
+        ],
+        "predictions": [
+          274.73,
+          286.43,
+          298.12,
+          309.81
+        ]
+      },
+      {
+        "company_id": "C018",
+        "company_name": "Zenith Software",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 3.82,
+        "rmse": 4.02,
+        "mape": 1.33,
+        "actuals": [
+          270.42,
+          282.55,
+          291.6,
+          299.92
+        ],
+        "predictions": [
+          274.25,
+          284.71,
+          295.17,
+          305.63
+        ]
+      },
+      {
+        "company_id": "C019",
+        "company_name": "Orion Chemicals",
+        "category": "Stable",
+        "selected_model": "Exponential Smoothing",
+        "mae": 5.11,
+        "rmse": 5.49,
+        "mape": 1.91,
+        "actuals": [
+          250.75,
+          263.02,
+          274.77,
+          279.99
+        ],
+        "predictions": [
+          256.46,
+          266.98,
+          277.51,
+          288.03
+        ]
+      },
+      {
+        "company_id": "C020",
+        "company_name": "Meridian Materials",
+        "category": "Stable",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 8.29,
+        "rmse": 9.73,
+        "mape": 2.7,
+        "actuals": [
+          275.73,
+          289.94,
+          307.02,
+          317.26
+        ],
+        "predictions": [
+          274.59,
+          284.12,
+          294.11,
+          303.96
+        ]
+      },
+      {
+        "company_id": "C021",
+        "company_name": "Pulse Digital",
+        "category": "Declining",
+        "selected_model": "Moving Average (3P)",
+        "mae": 3.4,
+        "rmse": 3.76,
+        "mape": 11.64,
+        "actuals": [
+          32.6,
+          28.85,
+          28.44,
+          30.08
+        ],
+        "predictions": [
+          33.39,
+          33.39,
+          33.39,
+          33.39
+        ]
+      },
+      {
+        "company_id": "C022",
+        "company_name": "Veritas Agritech",
+        "category": "Declining",
+        "selected_model": "Moving Average (3P)",
+        "mae": 2.96,
+        "rmse": 3.92,
+        "mape": 29.34,
+        "actuals": [
+          7.14,
+          6.25,
+          8.15,
+          12.91
+        ],
+        "predictions": [
+          5.65,
+          5.65,
+          5.65,
+          5.65
+        ]
+      },
+      {
+        "company_id": "C023",
+        "company_name": "Hyperion Robotics",
+        "category": "Declining",
+        "selected_model": "Random Forest Regressor",
+        "mae": 0.99,
+        "rmse": 1.39,
+        "mape": 198.5,
+        "actuals": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "predictions": [
+          3.15,
+          1.27,
+          0.78,
+          0.77
+        ]
+      },
+      {
+        "company_id": "C024",
+        "company_name": "Catalyst Renewables",
+        "category": "Declining",
+        "selected_model": "Naive Baseline",
+        "mae": 1.25,
+        "rmse": 1.46,
+        "mape": 1.77,
+        "actuals": [
+          69.01,
+          68.91,
+          68.44,
+          72.12
+        ],
+        "predictions": [
+          69.61,
+          69.61,
+          69.61,
+          69.61
+        ]
+      },
+      {
+        "company_id": "C025",
+        "company_name": "Summit Real Estate",
+        "category": "Declining",
+        "selected_model": "Exponential Smoothing",
+        "mae": 0.95,
+        "rmse": 1.54,
+        "mape": 3.4,
+        "actuals": [
+          30.47,
+          30.32,
+          30.04,
+          27.48
+        ],
+        "predictions": [
+          30.54,
+          30.53,
+          30.52,
+          30.52
+        ]
+      },
+      {
+        "company_id": "C026",
+        "company_name": "Starlight Media",
+        "category": "Declining",
+        "selected_model": "Exponential Smoothing",
+        "mae": 1.21,
+        "rmse": 1.57,
+        "mape": 70.31,
+        "actuals": [
+          0.5,
+          2.17,
+          2.42,
+          0.5
+        ],
+        "predictions": [
+          0.55,
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      {
+        "company_id": "C027",
+        "company_name": "Vortex Defense",
+        "category": "Declining",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 1.79,
+        "rmse": 2.57,
+        "mape": 6.63,
+        "actuals": [
+          23.28,
+          23.37,
+          26.33,
+          29.62
+        ],
+        "predictions": [
+          23.56,
+          25.64,
+          26.35,
+          25.02
+        ]
+      },
+      {
+        "company_id": "C028",
+        "company_name": "Solstice Pharma",
+        "category": "Declining",
+        "selected_model": "Gradient Boosting Regressor",
+        "mae": 0.78,
+        "rmse": 1.21,
+        "mape": 13.1,
+        "actuals": [
+          8.22,
+          6.61,
+          8.04,
+          5.56
+        ],
+        "predictions": [
+          7.71,
+          6.76,
+          7.92,
+          7.92
+        ]
+      },
+      {
+        "company_id": "C029",
+        "company_name": "Prism Gaming",
+        "category": "Highly Leveraged",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 11.23,
+        "rmse": 11.73,
+        "mape": 5.26,
+        "actuals": [
+          195.99,
+          207.79,
+          213.21,
+          225.61
+        ],
+        "predictions": [
+          189.56,
+          196.06,
+          202.48,
+          209.59
+        ]
+      },
+      {
+        "company_id": "C030",
+        "company_name": "Cascade Beverage",
+        "category": "Highly Leveraged",
+        "selected_model": "Exponential Smoothing",
+        "mae": 0.77,
+        "rmse": 0.82,
+        "mape": 0.3,
+        "actuals": [
+          242.23,
+          253.19,
+          265.3,
+          278.1
+        ],
+        "predictions": [
+          241.1,
+          253.64,
+          266.19,
+          278.73
+        ]
+      },
+      {
+        "company_id": "C031",
+        "company_name": "Novus Microelectronics",
+        "category": "Highly Leveraged",
+        "selected_model": "Moving Average (3P)",
+        "mae": 7.07,
+        "rmse": 8.09,
+        "mape": 7.25,
+        "actuals": [
+          89.63,
+          94.59,
+          96.6,
+          100.53
+        ],
+        "predictions": [
+          88.27,
+          88.27,
+          88.27,
+          88.27
+        ]
+      },
+      {
+        "company_id": "C032",
+        "company_name": "Valence Metals",
+        "category": "Highly Leveraged",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 20.99,
+        "rmse": 22.62,
+        "mape": 16.58,
+        "actuals": [
+          117.77,
+          123.93,
+          128.69,
+          129.88
+        ],
+        "predictions": [
+          129.64,
+          139.59,
+          151.06,
+          163.95
+        ]
+      },
+      {
+        "company_id": "C033",
+        "company_name": "Infinitum Supply Chain",
+        "category": "Highly Leveraged",
+        "selected_model": "Exponential Smoothing",
+        "mae": 2.07,
+        "rmse": 2.39,
+        "mape": 2.07,
+        "actuals": [
+          91.43,
+          96.87,
+          102.86,
+          105.89
+        ],
+        "predictions": [
+          93.71,
+          96.79,
+          99.87,
+          102.94
+        ]
+      },
+      {
+        "company_id": "C034",
+        "company_name": "Aegis Security",
+        "category": "Highly Leveraged",
+        "selected_model": "Exponential Smoothing",
+        "mae": 1.36,
+        "rmse": 1.98,
+        "mape": 0.55,
+        "actuals": [
+          225.81,
+          234.47,
+          243.67,
+          250.09
+        ],
+        "predictions": [
+          225.85,
+          235.2,
+          244.54,
+          253.89
+        ]
+      },
+      {
+        "company_id": "C035",
+        "company_name": "Terra CleanTech",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 33.49,
+        "rmse": 43.66,
+        "mape": 2.95,
+        "actuals": [
+          999.6,
+          1054.44,
+          1112.43,
+          1173.64
+        ],
+        "predictions": [
+          995.75,
+          1068.13,
+          1152.7,
+          1249.8
+        ]
+      },
+      {
+        "company_id": "C036",
+        "company_name": "Core Analytics",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 4.37,
+        "rmse": 5.19,
+        "mape": 0.41,
+        "actuals": [
+          945.69,
+          1008.25,
+          1067.06,
+          1127.01
+        ],
+        "predictions": [
+          949.34,
+          1007.72,
+          1072.0,
+          1135.36
+        ]
+      },
+      {
+        "company_id": "C037",
+        "company_name": "Radiant Lighting",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 64.73,
+        "rmse": 70.29,
+        "mape": 3.26,
+        "actuals": [
+          1724.51,
+          1878.21,
+          1998.37,
+          2136.12
+        ],
+        "predictions": [
+          1701.67,
+          1814.06,
+          1925.55,
+          2037.01
+        ]
+      },
+      {
+        "company_id": "C038",
+        "company_name": "Synthetix Genetics",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 14.41,
+        "rmse": 18.33,
+        "mape": 0.97,
+        "actuals": [
+          1300.65,
+          1412.85,
+          1499.22,
+          1590.06
+        ],
+        "predictions": [
+          1294.54,
+          1392.58,
+          1500.6,
+          1619.95
+        ]
+      },
+      {
+        "company_id": "C039",
+        "company_name": "Velocity Mobility",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 29.29,
+        "rmse": 35.07,
+        "mape": 1.7,
+        "actuals": [
+          1480.12,
+          1587.84,
+          1711.45,
+          1816.81
+        ],
+        "predictions": [
+          1488.7,
+          1608.36,
+          1738.92,
+          1877.4
+        ]
+      },
+      {
+        "company_id": "C040",
+        "company_name": "AeroVentures",
+        "category": "Cash-Rich",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 11.87,
+        "rmse": 13.92,
+        "mape": 0.88,
+        "actuals": [
+          1175.51,
+          1265.66,
+          1344.23,
+          1437.23
+        ],
+        "predictions": [
+          1174.05,
+          1251.3,
+          1334.13,
+          1415.66
+        ]
+      },
+      {
+        "company_id": "C041",
+        "company_name": "BlueShift Logistics",
+        "category": "Cash-Constrained",
+        "selected_model": "Naive Baseline",
+        "mae": 0.74,
+        "rmse": 1.05,
+        "mape": 37.37,
+        "actuals": [
+          1.99,
+          1.97,
+          0.5,
+          0.5
+        ],
+        "predictions": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "company_id": "C042",
+        "company_name": "Elysium Networks",
+        "category": "Cash-Constrained",
+        "selected_model": "Naive Baseline",
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0,
+        "actuals": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "predictions": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "company_id": "C043",
+        "company_name": "Kinetix Motors",
+        "category": "Cash-Constrained",
+        "selected_model": "Naive Baseline",
+        "mae": 2.1,
+        "rmse": 2.97,
+        "mape": 44.67,
+        "actuals": [
+          0.5,
+          0.5,
+          4.81,
+          4.58
+        ],
+        "predictions": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "company_id": "C044",
+        "company_name": "Optima Health",
+        "category": "Cash-Constrained",
+        "selected_model": "Naive Baseline",
+        "mae": 0.4,
+        "rmse": 0.54,
+        "mape": 44.77,
+        "actuals": [
+          0.5,
+          1.16,
+          1.22,
+          2.0
+        ],
+        "predictions": [
+          1.15,
+          1.15,
+          1.15,
+          1.15
+        ]
+      },
+      {
+        "company_id": "C049",
+        "company_name": "Shockwave Retail (Revenue Spike)",
+        "category": "Highly Volatile",
+        "selected_model": "Exponential Smoothing",
+        "mae": 33.72,
+        "rmse": 54.6,
+        "mape": 9.65,
+        "actuals": [
+          241.49,
+          253.88,
+          278.8,
+          378.54
+        ],
+        "predictions": [
+          237.79,
+          248.9,
+          260.02,
+          271.14
+        ]
+      },
+      {
+        "company_id": "C050",
+        "company_name": "Volatile Dynamics (Expense Spike)",
+        "category": "Highly Volatile",
+        "selected_model": "Exponential Smoothing",
+        "mae": 33.42,
+        "rmse": 48.73,
+        "mape": 43.41,
+        "actuals": [
+          141.75,
+          145.15,
+          105.0,
+          66.96
+        ],
+        "predictions": [
+          139.77,
+          144.46,
+          149.14,
+          153.82
+        ]
+      },
+      {
+        "company_id": "C051",
+        "company_name": "BurnRate Systems (Insolvent)",
+        "category": "Highly Volatile",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 9.45,
+        "rmse": 9.83,
+        "mape": 9.62,
+        "actuals": [
+          96.61,
+          94.42,
+          98.58,
+          104.75
+        ],
+        "predictions": [
+          102.08,
+          106.62,
+          110.29,
+          113.16
+        ]
+      },
+      {
+        "company_id": "C052",
+        "company_name": "CashDrain Inc (Insolvent)",
+        "category": "Highly Volatile",
+        "selected_model": "Naive Baseline",
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0,
+        "actuals": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "predictions": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "company_id": "C053",
+        "company_name": "Chaos Labs (High Volatility)",
+        "category": "Highly Volatile",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 25.66,
+        "rmse": 29.7,
+        "mape": 5.2,
+        "actuals": [
+          445.38,
+          463.34,
+          483.32,
+          522.14
+        ],
+        "predictions": [
+          435.11,
+          446.02,
+          458.16,
+          472.25
+        ]
+      },
+      {
+        "company_id": "C054",
+        "company_name": "Turbulence Capital (High Volatility)",
+        "category": "Highly Volatile",
+        "selected_model": "Exponential Smoothing",
+        "mae": 9.39,
+        "rmse": 9.77,
+        "mape": 10.56,
+        "actuals": [
+          91.12,
+          88.64,
+          88.73,
+          88.35
+        ],
+        "predictions": [
+          96.31,
+          97.83,
+          99.36,
+          100.89
+        ]
+      },
+      {
+        "company_id": "C055",
+        "company_name": "Wildcard Corp (High Volatility)",
+        "category": "Highly Volatile",
+        "selected_model": "Ridge Linear Regression",
+        "mae": 8.63,
+        "rmse": 8.85,
+        "mape": 3.74,
+        "actuals": [
+          218.2,
+          230.82,
+          236.11,
+          244.07
+        ],
+        "predictions": [
+          208.85,
+          219.44,
+          228.43,
+          237.97
+        ]
+      }
+    ]
+  },
+  "exception_summary": {
+    "total_companies": 55,
+    "total_forecasts_generated": 55,
+    "resolved_forecasts": 47,
+    "human_review_exceptions": 8,
+    "resolution_rate_pct": 85.45,
+    "exception_rate_pct": 14.55,
+    "exception_list": [
+      {
+        "company_id": "C025",
+        "company_name": "Summit Real Estate",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 0.74 > 0.65 threshold).",
+          "Sudden structural revenue shift of 51.2% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-0.74 Cr) driven by operating expenses of 9.05 Cr.",
+          "Elevated Accounts Receivable (6.70 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 63.77 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C026",
+        "company_name": "Starlight Media",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.2,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 3.42 > 0.65 threshold).",
+          "Critical cash burn risk: Cash runway is only 0.2 quarters (0.5 Cr remaining)."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-2.53 Cr) driven by operating expenses of 8.57 Cr.",
+          "Substantial Capital Expenditure (2.11 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 70.99 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C045",
+        "company_name": "Alpha Micro-Cap (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2020-Q1",
+        "historical_periods": 5,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (5 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (11.65 Cr) supporting cash balance."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C046",
+        "company_name": "Beta Startup (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2019-Q3",
+        "historical_periods": 3,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (3 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (8.60 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 54.26 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C047",
+        "company_name": "Gamma Ventures (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2019-Q3",
+        "historical_periods": 3,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (3 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (9.29 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (26.05 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C048",
+        "company_name": "Delta Tech (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2020-Q1",
+        "historical_periods": 5,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (5 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (16.37 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 50.39 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C049",
+        "company_name": "Shockwave Retail (Revenue Spike)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 1.13 > 0.65 threshold).",
+          "Sudden structural revenue shift of 655.5% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (181.20 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (305.33 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (60.23 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 52.90 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C054",
+        "company_name": "Turbulence Capital (High Volatility)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 1.01 > 0.65 threshold).",
+          "Sudden structural revenue shift of 65.3% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (0.96 Cr) supporting cash balance."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      }
+    ],
+    "all_confidence_reports": [
+      {
+        "company_id": "C001",
+        "company_name": "Apex Tech Solutions",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 101.3% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (145.03 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C002",
+        "company_name": "Horizon Logistics",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 59.6% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (52.29 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C003",
+        "company_name": "Beacon Healthcare",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 77.5% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (97.05 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C004",
+        "company_name": "Vanguard Manufacturing",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 59.1% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (47.13 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (49.33 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C005",
+        "company_name": "Solaris Energy",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 59.5% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (50.21 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C006",
+        "company_name": "Quantum Dynamics",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 69.1% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (79.48 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (71.59 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C007",
+        "company_name": "Pinnacle Bio",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 94.4% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (129.33 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C008",
+        "company_name": "Nexus Cloud Systems",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 72.4% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (69.13 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C009",
+        "company_name": "Titan Heavy Industries",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 101.7% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (59.17 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (73.18 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C010",
+        "company_name": "Aura Consumer Goods",
+        "category": "Growing",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (68.48 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (70.84 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C011",
+        "company_name": "Sterling Retail",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (27.46 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (39.45 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C012",
+        "company_name": "Frontier Aerospace",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (16.65 Cr) supporting cash balance."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C013",
+        "company_name": "Omni Financial",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (24.17 Cr) supporting cash balance."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C014",
+        "company_name": "Atlas Infrastructure",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (9.47 Cr) supporting cash balance."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C015",
+        "company_name": "Velox Medical Devices",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (28.77 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (41.87 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C016",
+        "company_name": "Echo Communications",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (21.86 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (34.85 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C017",
+        "company_name": "Crestline Automotive",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (23.41 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (35.11 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C018",
+        "company_name": "Zenith Software",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (20.50 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (32.58 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C019",
+        "company_name": "Orion Chemicals",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (19.56 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 55.42 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C020",
+        "company_name": "Meridian Materials",
+        "category": "Stable",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (30.52 Cr) supporting cash balance."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C021",
+        "company_name": "Pulse Digital",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (4.99 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 61.76 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C022",
+        "company_name": "Veritas Agritech",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (4.95 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (15.03 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (2.07 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 81.03 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C023",
+        "company_name": "Hyperion Robotics",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (2.71 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (5.27 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 74.11 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C024",
+        "company_name": "Catalyst Renewables",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (6.65 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 74.18 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C025",
+        "company_name": "Summit Real Estate",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 0.74 > 0.65 threshold).",
+          "Sudden structural revenue shift of 51.2% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-0.74 Cr) driven by operating expenses of 9.05 Cr.",
+          "Elevated Accounts Receivable (6.70 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 63.77 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C026",
+        "company_name": "Starlight Media",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.2,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 3.42 > 0.65 threshold).",
+          "Critical cash burn risk: Cash runway is only 0.2 quarters (0.5 Cr remaining)."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-2.53 Cr) driven by operating expenses of 8.57 Cr.",
+          "Substantial Capital Expenditure (2.11 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 70.99 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C027",
+        "company_name": "Vortex Defense",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (4.09 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 81.32 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C028",
+        "company_name": "Solstice Pharma",
+        "category": "Declining",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.65,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 0.65 > 0.65 threshold)."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-0.16 Cr) driven by operating expenses of 16.40 Cr.",
+          "Elevated Accounts Receivable (13.71 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (2.59 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 67.29 Cr)."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C029",
+        "company_name": "Prism Gaming",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (24.78 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 181.85 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C030",
+        "company_name": "Cascade Beverage",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (40.02 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 138.22 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C031",
+        "company_name": "Novus Microelectronics",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (15.20 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (34.09 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 182.32 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C032",
+        "company_name": "Valence Metals",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (33.05 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (101.74 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (31.32 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 120.24 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C033",
+        "company_name": "Infinitum Supply Chain",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (14.59 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (40.53 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 180.70 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C034",
+        "company_name": "Aegis Security",
+        "category": "Highly Leveraged",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (21.52 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 129.49 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C035",
+        "company_name": "Terra CleanTech",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (94.01 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (86.32 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C036",
+        "company_name": "Core Analytics",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 67.9% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (100.01 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (91.84 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C037",
+        "company_name": "Radiant Lighting",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 65.2% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (200.28 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (165.47 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C038",
+        "company_name": "Synthetix Genetics",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 68.5% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (152.46 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C039",
+        "company_name": "Velocity Mobility",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 68.1% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (162.76 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C040",
+        "company_name": "AeroVentures",
+        "category": "Cash-Rich",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 67.3% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (131.42 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (109.78 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C041",
+        "company_name": "BlueShift Logistics",
+        "category": "Cash-Constrained",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.65,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 11.12 > 0.65 threshold)."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-0.16 Cr) driven by operating expenses of 17.78 Cr.",
+          "Substantial Capital Expenditure (4.69 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 83.48 Cr)."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C042",
+        "company_name": "Elysium Networks",
+        "category": "Cash-Constrained",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.65,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 22.52 > 0.65 threshold)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (1.85 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (25.09 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (5.73 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 71.63 Cr)."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C043",
+        "company_name": "Kinetix Motors",
+        "category": "Cash-Constrained",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (7.09 Cr) supporting cash balance.",
+          "Substantial Capital Expenditure (6.13 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 75.29 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C044",
+        "company_name": "Optima Health",
+        "category": "Cash-Constrained",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (5.01 Cr) supporting cash balance.",
+          "Substantial Capital Expenditure (7.05 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 70.71 Cr)."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C045",
+        "company_name": "Alpha Micro-Cap (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2020-Q1",
+        "historical_periods": 5,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (5 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (11.65 Cr) supporting cash balance."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C046",
+        "company_name": "Beta Startup (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2019-Q3",
+        "historical_periods": 3,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (3 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (8.60 Cr) supporting cash balance.",
+          "Heavy Debt Service Burden (Total Debt: 54.26 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C047",
+        "company_name": "Gamma Ventures (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2019-Q3",
+        "historical_periods": 3,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (3 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (9.29 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (26.05 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C048",
+        "company_name": "Delta Tech (Truncated)",
+        "category": "Highly Volatile",
+        "latest_period": "2020-Q1",
+        "historical_periods": 5,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.45,
+        "resolution_status": "INSUFFICIENT_DATA",
+        "is_resolved": false,
+        "exception_type": "INSUFFICIENT_HISTORY",
+        "reasons": [
+          "Insufficient historical observations (5 periods available; minimum 6 required)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (16.37 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
+          "Heavy Debt Service Burden (Total Debt: 50.39 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
+      },
+      {
+        "company_id": "C049",
+        "company_name": "Shockwave Retail (Revenue Spike)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 1.13 > 0.65 threshold).",
+          "Sudden structural revenue shift of 655.5% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (181.20 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (305.33 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (60.23 Cr) requiring cash outlay.",
+          "Heavy Debt Service Burden (Total Debt: 52.90 Cr)."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C050",
+        "company_name": "Volatile Dynamics (Expense Spike)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.65,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 1.30 > 0.65 threshold)."
+        ],
+        "financial_drivers": [
+          "Negative Operating Cash Flow (-30.19 Cr) driven by operating expenses of 42.18 Cr.",
+          "Elevated Accounts Receivable (39.20 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (10.69 Cr) requiring cash outlay."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C051",
+        "company_name": "BurnRate Systems (Insolvent)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (10.99 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (36.53 Cr) absorbing liquidity in working capital."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      },
+      {
+        "company_id": "C052",
+        "company_name": "CashDrain Inc (Insolvent)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.65,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 2.58 > 0.65 threshold)."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (0.13 Cr) supporting cash balance.",
+          "Elevated Accounts Receivable (25.73 Cr) absorbing liquidity in working capital.",
+          "Substantial Capital Expenditure (7.63 Cr) requiring cash outlay."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C053",
+        "company_name": "Chaos Labs (High Volatility)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "MEDIUM",
+        "confidence_score": 0.6,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "STRUCTURAL_BREAK",
+        "reasons": [
+          "Sudden structural revenue shift of 79.7% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (78.55 Cr) supporting cash balance."
+        ],
+        "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
+      },
+      {
+        "company_id": "C054",
+        "company_name": "Turbulence Capital (High Volatility)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "LOW",
+        "confidence_score": 0.25,
+        "resolution_status": "NEEDS_HUMAN_REVIEW",
+        "is_resolved": false,
+        "exception_type": "HIGH_VOLATILITY",
+        "reasons": [
+          "High cash flow volatility (Coefficient of Variation = 1.01 > 0.65 threshold).",
+          "Sudden structural revenue shift of 65.3% detected in latest period."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (0.96 Cr) supporting cash balance."
+        ],
+        "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
+      },
+      {
+        "company_id": "C055",
+        "company_name": "Wildcard Corp (High Volatility)",
+        "category": "Highly Volatile",
+        "latest_period": "2024-Q4",
+        "historical_periods": 24,
+        "target": "90-Day Cash Position",
+        "confidence_status": "HIGH",
+        "confidence_score": 1.0,
+        "resolution_status": "RESOLVED",
+        "is_resolved": true,
+        "exception_type": "NONE",
+        "reasons": [
+          "Stable historical cash flow trajectory and robust balance sheet liquidity."
+        ],
+        "financial_drivers": [
+          "Positive Operating Cash Flow (16.75 Cr) supporting cash balance."
+        ],
+        "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
+      }
+    ]
+  }
+}
