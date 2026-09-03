@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bot, User, Send, Sparkles, Building2, AlertTriangle, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Bot, User, Send, Sparkles, Building2, AlertTriangle, ShieldCheck, Globe, Cpu } from 'lucide-react';
 import { apiFetch } from '../apiConfig';
 
 function FormattedMessageText({ text }) {
@@ -78,6 +78,8 @@ function parseInlineMarkdown(text) {
 }
 
 export default function AgentChat({ selectedCompanyId, onSelectCompany, companies = [] }) {
+  const [scopeMode, setScopeMode] = useState('global'); // 'global' | 'company'
+
   const activeCompanyObj = companies.find(c => c.company_id === selectedCompanyId);
   const activeCompanyName = activeCompanyObj && activeCompanyObj.company_name && activeCompanyObj.company_name !== 'CO'
     ? activeCompanyObj.company_name 
@@ -86,19 +88,27 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: `Hello! I am your **AI Finance Controller Agent**. I close the finance-ops loop across 55 companies: forecasting cash trajectory, analyzing operational drivers, assessing financial risk, and providing grounded controller recommendations.\n\nAsk me about company cash predictions, risk drivers, what-if scenarios, or low-confidence exception cases!`
+      text: `Hello! I am your **AI Finance Controller Agent**. I close the finance-ops loop across all 55 companies: forecasting cash trajectory, analyzing operational drivers, assessing financial risk, and providing grounded controller recommendations.\n\nToggle between **Global Portfolio Scope** and **Company Scope** in the header above, or ask me to list low-confidence exception companies requiring manual review!`
     }
   ]);
   const [inputQuery, setInputQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const samplePrompts = [
+  const globalSamplePrompts = [
+    `List low-confidence exception companies requiring manual review.`,
+    `Which companies are flagged as high risk across the portfolio?`,
+    `What is the overall portfolio cash resolution rate?`,
+    `Show accuracy performance breakdown by corporate behavior category.`
+  ];
+
+  const companySamplePrompts = [
     `What will ${activeCompanyName}'s cash position look like next quarter?`,
     `Why is cash expected to decline for ${activeCompanyName}?`,
     `Is ${activeCompanyName} financially at risk?`,
-    `What happens if revenue falls by 10% for ${activeCompanyName}?`,
-    `List low-confidence exception companies requiring manual review.`
+    `What happens if revenue falls by 10% for ${activeCompanyName}?`
   ];
+
+  const samplePrompts = scopeMode === 'global' ? globalSamplePrompts : companySamplePrompts;
 
   const handleSend = async (queryText) => {
     const query = queryText || inputQuery;
@@ -114,14 +124,19 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
       const res = await apiFetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: query, company_id: selectedCompanyId })
+        body: JSON.stringify({ 
+          query: query, 
+          company_id: scopeMode === 'global' ? 'GLOBAL' : selectedCompanyId,
+          scope: scopeMode
+        })
       });
 
       const data = await res.json();
       const botMsg = { 
         sender: 'bot', 
         text: data.answer,
-        evidence: data.evidence
+        evidence: data.evidence,
+        scope: data.scope || scopeMode
       };
       setMessages(prev => [...prev, botMsg]);
     } catch (err) {
@@ -134,8 +149,8 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
 
   return (
     <div className="glass-card flex flex-col h-[750px]">
-      {/* Agent Chat Header */}
-      <div className="p-5 border-b border-gray-800 flex items-center justify-between">
+      {/* Agent Chat Header with Scope Toggle */}
+      <div className="p-5 border-b border-gray-800 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/30 rounded-xl text-cyan-400">
             <Bot className="w-6 h-6" />
@@ -148,15 +163,35 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
             </h3>
-            <div className="text-xs text-gray-400">Closing the Finance-Ops Loop: Forecast ➜ Drivers ➜ Risk ➜ Resolution ➜ Action</div>
+            <div className="text-xs text-gray-400">Natural Language Reasoning & Finance-Ops Loop</div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-400">Active Reference:</span>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
-            {activeCompanyName}
-          </span>
+        {/* Global vs Company Scope Selector */}
+        <div className="flex items-center gap-2 bg-gray-900/90 p-1 rounded-xl border border-gray-800">
+          <button
+            onClick={() => setScopeMode('global')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              scopeMode === 'global'
+                ? 'bg-cyan-500 text-white shadow'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <Globe className="w-3.5 h-3.5" />
+            Global Portfolio (55 Companies)
+          </button>
+
+          <button
+            onClick={() => setScopeMode('company')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+              scopeMode === 'company'
+                ? 'bg-cyan-500 text-white shadow'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <Building2 className="w-3.5 h-3.5" />
+            Company: {activeCompanyName}
+          </button>
         </div>
       </div>
 
@@ -177,7 +212,6 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
             }`}>
               <FormattedMessageText text={msg.text} />
 
-              {/* Model & Status Metadata without engine text */}
               {msg.sender === 'bot' && msg.evidence && msg.evidence.cash_forecast && (
                 <div className="mt-3 pt-3 border-t border-gray-800 flex flex-wrap items-center gap-2 text-[11px] text-gray-400">
                   <span className="px-2 py-0.5 rounded bg-gray-800 border border-gray-700">
@@ -203,7 +237,7 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
             <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 animate-spin">
               <Sparkles className="w-4 h-4" />
             </div>
-            <span>Evaluating quantitative evidence, driver analysis & AI reasoning...</span>
+            <span>Evaluating quantitative evidence across {scopeMode === 'global' ? 'all 55 portfolio companies' : activeCompanyName}...</span>
           </div>
         )}
       </div>
@@ -211,13 +245,13 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
       {/* Suggested Quick Prompts */}
       <div className="p-3 bg-gray-900/50 border-t border-gray-800 flex flex-wrap gap-2">
         <span className="text-xs text-gray-400 flex items-center gap-1">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Suggested Prompts:
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Suggested Prompts ({scopeMode === 'global' ? 'Global Portfolio' : activeCompanyName}):
         </span>
         {samplePrompts.map((p, i) => (
           <button
             key={i}
             onClick={() => handleSend(p)}
-            className="text-xs bg-gray-800/80 hover:bg-cyan-500/20 hover:text-cyan-300 text-gray-300 px-3 py-1 rounded-full border border-gray-700 transition-all text-left truncate max-w-xs"
+            className="text-xs bg-gray-800/80 hover:bg-cyan-500/20 hover:text-cyan-300 text-gray-300 px-3 py-1 rounded-full border border-gray-700 transition-all text-left truncate max-w-md"
           >
             {p}
           </button>
@@ -231,7 +265,7 @@ export default function AgentChat({ selectedCompanyId, onSelectCompany, companie
           value={inputQuery}
           onChange={(e) => setInputQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-          placeholder={`Ask AI Financial Controller about ${activeCompanyName}...`}
+          placeholder={scopeMode === 'global' ? "Ask AI Financial Controller about portfolio exceptions, risk across 55 companies..." : `Ask AI Financial Controller about ${activeCompanyName}...`}
           className="flex-1 bg-gray-950 text-white placeholder-gray-500 text-sm px-4 py-2.5 rounded-lg border border-gray-800 focus:outline-none focus:border-cyan-500"
         />
         <button

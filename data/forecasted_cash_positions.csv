@@ -1,0 +1,56 @@
+Company Number,Company Name,Category,Current Cash (Cr),30-Day Forecast (Cr),60-Day Forecast (Cr),90-Day Forecast (Cr),Expected Net Change (Cr),Selected Forecast Model,Resolution Status
+C001,Apex Tech Solutions,Growing,1096.89,1198.79,1307.27,1425.71,328.82,Ridge Linear Regression,RESOLVED
+C002,Horizon Logistics,Growing,524.06,555.47,589.1,623.01,98.95,Ridge Linear Regression,RESOLVED
+C003,Beacon Healthcare,Growing,918.15,990.55,1064.68,1141.78,223.63,Ridge Linear Regression,RESOLVED
+C004,Vanguard Manufacturing,Growing,460.42,489.46,522.78,559.16,98.74,Ridge Linear Regression,RESOLVED
+C005,Solaris Energy,Growing,533.25,561.56,593.99,625.27,92.02,Ridge Linear Regression,RESOLVED
+C006,Quantum Dynamics,Growing,801.0,852.78,908.89,965.22,164.22,Ridge Linear Regression,RESOLVED
+C007,Pinnacle Bio,Growing,1060.55,1150.81,1272.62,1424.28,363.73,Ridge Linear Regression,RESOLVED
+C008,Nexus Cloud Systems,Growing,644.77,692.38,742.58,795.06,150.29,Ridge Linear Regression,RESOLVED
+C009,Titan Heavy Industries,Growing,480.84,519.14,559.24,600.87,120.03,Ridge Linear Regression,RESOLVED
+C010,Aura Consumer Goods,Growing,772.25,807.79,846.99,886.18,113.93,Exponential Smoothing,RESOLVED
+C011,Sterling Retail,Stable,296.21,304.71,315.52,326.33,30.12,Exponential Smoothing,RESOLVED
+C012,Frontier Aerospace,Stable,274.19,281.29,290.02,297.72,23.53,Ridge Linear Regression,RESOLVED
+C013,Omni Financial,Stable,401.43,414.68,429.06,443.58,42.15,Ridge Linear Regression,RESOLVED
+C014,Atlas Infrastructure,Stable,134.92,139.12,144.31,149.48,14.56,Ridge Linear Regression,RESOLVED
+C015,Velox Medical Devices,Stable,370.59,382.95,398.28,413.62,43.03,Exponential Smoothing,RESOLVED
+C016,Echo Communications,Stable,240.72,248.49,257.85,265.78,25.06,Ridge Linear Regression,RESOLVED
+C017,Crestline Automotive,Stable,307.11,316.83,326.75,337.39,30.28,Ridge Linear Regression,RESOLVED
+C018,Zenith Software,Stable,299.92,311.23,321.06,330.89,30.97,Exponential Smoothing,RESOLVED
+C019,Orion Chemicals,Stable,279.99,292.22,301.94,311.65,31.66,Exponential Smoothing,RESOLVED
+C020,Meridian Materials,Stable,317.26,330.12,340.83,351.99,34.73,Ridge Linear Regression,RESOLVED
+C021,Pulse Digital,Declining,30.08,30.08,30.08,30.08,0.0,Naive Baseline,RESOLVED
+C022,Veritas Agritech,Declining,12.91,12.05,11.91,12.07,-0.84,Gradient Boosting Regressor,RESOLVED
+C023,Hyperion Robotics,Declining,0.5,0.5,0.5,0.5,0.0,Naive Baseline,RESOLVED
+C024,Catalyst Renewables,Declining,72.12,74.38,76.3,77.35,5.23,Ridge Linear Regression,RESOLVED
+C025,Summit Real Estate,Declining,27.48,26.63,25.72,25.34,-2.14,Ridge Linear Regression,NEEDS_HUMAN_REVIEW
+C026,Starlight Media,Declining,0.5,0.1,0.1,0.1,-0.4,Ridge Linear Regression,NEEDS_HUMAN_REVIEW
+C027,Vortex Defense,Declining,29.62,29.28,28.94,28.94,-0.68,Gradient Boosting Regressor,RESOLVED
+C028,Solstice Pharma,Declining,5.56,5.56,5.56,5.56,0.0,Naive Baseline,RESOLVED
+C029,Prism Gaming,Highly Leveraged,225.61,235.13,245.12,255.12,29.51,Exponential Smoothing,RESOLVED
+C030,Cascade Beverage,Highly Leveraged,278.1,290.73,303.17,315.62,37.52,Exponential Smoothing,RESOLVED
+C031,Novus Microelectronics,Highly Leveraged,100.53,102.91,105.53,108.15,7.62,Exponential Smoothing,RESOLVED
+C032,Valence Metals,Highly Leveraged,129.88,134.35,140.64,148.4,18.52,Ridge Linear Regression,RESOLVED
+C033,Infinitum Supply Chain,Highly Leveraged,105.89,109.06,112.64,116.28,10.39,Ridge Linear Regression,RESOLVED
+C034,Aegis Security,Highly Leveraged,250.09,260.96,269.95,278.95,28.86,Exponential Smoothing,RESOLVED
+C035,Terra CleanTech,Cash-Rich,1173.64,1240.89,1313.15,1389.63,215.99,Ridge Linear Regression,RESOLVED
+C036,Core Analytics,Cash-Rich,1127.01,1192.35,1258.89,1326.25,199.24,Ridge Linear Regression,RESOLVED
+C037,Radiant Lighting,Cash-Rich,2136.12,2292.16,2445.21,2601.09,464.97,Ridge Linear Regression,RESOLVED
+C038,Synthetix Genetics,Cash-Rich,1590.06,1697.25,1819.75,1955.47,365.41,Ridge Linear Regression,RESOLVED
+C039,Velocity Mobility,Cash-Rich,1816.81,1945.83,2064.3,2195.19,378.38,Ridge Linear Regression,RESOLVED
+C040,AeroVentures,Cash-Rich,1437.23,1528.89,1621.96,1717.81,280.58,Ridge Linear Regression,RESOLVED
+C041,BlueShift Logistics,Cash-Constrained,0.5,0.99,0.99,0.99,0.49,Moving Average (3P),RESOLVED
+C042,Elysium Networks,Cash-Constrained,0.5,0.5,0.5,0.5,0.0,Naive Baseline,RESOLVED
+C043,Kinetix Motors,Cash-Constrained,4.58,5.33,3.51,2.72,-1.86,Gradient Boosting Regressor,RESOLVED
+C044,Optima Health,Cash-Constrained,2.0,2.0,2.0,2.0,0.0,Naive Baseline,RESOLVED
+C045,Alpha Micro-Cap (Truncated),Highly Volatile,62.6,62.6,62.6,62.6,0.0,Naive Baseline,INSUFFICIENT_DATA
+C046,Beta Startup (Truncated),Highly Volatile,64.49,64.49,64.49,64.49,0.0,Naive Baseline,INSUFFICIENT_DATA
+C047,Gamma Ventures (Truncated),Highly Volatile,48.15,48.15,48.15,48.15,0.0,Naive Baseline,INSUFFICIENT_DATA
+C048,Delta Tech (Truncated),Highly Volatile,69.74,69.74,69.74,69.74,0.0,Naive Baseline,INSUFFICIENT_DATA
+C049,Shockwave Retail (Revenue Spike),Highly Volatile,378.54,643.08,726.9,1017.91,639.37,Ridge Linear Regression,NEEDS_HUMAN_REVIEW
+C050,Volatile Dynamics (Expense Spike),Highly Volatile,66.96,105.7,105.7,105.7,38.74,Moving Average (3P),RESOLVED
+C051,BurnRate Systems (Insolvent),Highly Volatile,104.75,103.51,105.09,106.67,1.92,Exponential Smoothing,RESOLVED
+C052,CashDrain Inc (Insolvent),Highly Volatile,0.5,0.5,0.5,0.5,0.0,Naive Baseline,RESOLVED
+C053,Chaos Labs (High Volatility),Highly Volatile,522.14,558.28,588.94,617.2,95.06,Ridge Linear Regression,RESOLVED
+C054,Turbulence Capital (High Volatility),Highly Volatile,88.35,88.35,88.35,88.35,0.0,Naive Baseline,NEEDS_HUMAN_REVIEW
+C055,Wildcard Corp (High Volatility),Highly Volatile,244.07,251.93,261.25,270.57,26.5,Exponential Smoothing,RESOLVED

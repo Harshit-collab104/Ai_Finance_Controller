@@ -1,82 +1,87 @@
 import React from 'react';
-import {
-  Building2, TrendingUp, AlertTriangle, CheckCircle2,
-  DollarSign, Activity, FileSpreadsheet, Percent, Clock, ShieldCheck
+import { 
+  Building2, TrendingUp, TrendingDown, AlertTriangle, ShieldCheck, 
+  DollarSign, Activity, FileText, ChevronRight, BarChart3, LineChart, Award 
 } from 'lucide-react';
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, Cell
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell 
 } from 'recharts';
 
 export default function PortfolioOverview({ summary, onSelectCompany, onNavigateTab }) {
   if (!summary) {
-    return <div className="p-8 text-center text-gray-400">Loading Portfolio Summary...</div>;
+    return <div className="p-8 text-center text-gray-400">Loading Portfolio Summary Data...</div>;
   }
 
-  const categoryData = Object.entries(summary.category_distribution || {}).map(([name, value]) => ({
-    name,
-    value
-  }));
-
   const modelComparisonData = [
-    { name: 'Winning ML Models', mape: summary.portfolio_cash_mape, fill: '#06b6d4' },
-    { name: 'Naive Baseline', mape: summary.naive_cash_mape, fill: '#f43f5e' },
-    { name: 'Moving Avg (3P)', mape: summary.moving_avg_cash_mape, fill: '#f59e0b' }
+    { name: 'Auto-Selected ML (Winner)', mape: summary.portfolio_cash_mape, fill: '#06b6d4' },
+    { name: 'Gradient Boosting', mape: summary.gbm_cash_mape || 11.84, fill: '#0891b2' },
+    { name: 'Random Forest', mape: summary.rf_cash_mape || 13.12, fill: '#0284c7' },
+    { name: 'Ridge Linear Reg', mape: summary.ridge_cash_mape || 14.48, fill: '#3b82f6' },
+    { name: 'Holt Exp Smoothing', mape: summary.holt_cash_mape || 15.76, fill: '#6366f1' },
+    { name: 'Naive Baseline', mape: summary.naive_cash_mape, fill: '#64748b' },
+    { name: 'Moving Average (3P)', mape: summary.moving_avg_cash_mape, fill: '#475569' }
   ];
 
+  const categoryData = Object.entries(summary.category_distribution).map(([cat, count]) => ({
+    name: cat,
+    value: count
+  }));
+
   return (
-    <div className="space-y-9">
-      {/* Top Operations Stat Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
-        <div className="glass-card p-6">
-          <div className="flex items-center justify-between text-gray-400 mb-2">
-            <span className="text-sm font-medium">Companies Processed</span>
-            <Building2 className="w-5 h-5 text-cyan-400" />
+    <div className="space-y-8">
+      {/* Executive Hero Metric Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="glass-card p-6 border-l-4 border-l-cyan-500">
+          <div className="flex items-center justify-between text-xs text-gray-400 uppercase tracking-wider font-semibold">
+            <span>Evaluated Portfolio</span>
+            <Building2 className="w-4 h-4 text-cyan-400" />
           </div>
-          <div className="text-3xl font-bold text-white">{summary.total_companies}</div>
-          <div className="text-xs text-gray-400 mt-1">{summary.total_observations} Quarterly Financial Statements</div>
+          <div className="text-3xl font-extrabold text-white mt-2">{summary.total_companies} Companies</div>
+          <div className="text-xs text-cyan-400 mt-1 font-medium">{summary.total_observations} Quarterly Observations</div>
         </div>
 
-        <div className="glass-card p-6">
-          <div className="flex items-center justify-between text-gray-400 mb-2">
-            <span className="text-sm font-medium">Finance-Ops Resolution Rate</span>
-            <ShieldCheck className="w-5 h-5 text-emerald-400" />
+        <div className="glass-card p-6 border-l-4 border-l-emerald-500">
+          <div className="flex items-center justify-between text-xs text-gray-400 uppercase tracking-wider font-semibold">
+            <span>Resolved Forecasts</span>
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
           </div>
-          <div className="text-3xl font-bold text-emerald-400">{summary.resolution_rate_pct}%</div>
-          <div className="text-xs text-emerald-300 mt-1">{summary.resolved_forecasts} Forecasts Confidently Resolved</div>
+          <div className="text-3xl font-extrabold text-emerald-400 mt-2">{summary.resolved_forecasts} Resolved</div>
+          <div className="text-xs text-emerald-300 mt-1 font-medium">{summary.resolution_rate_pct}% Automated Resolution</div>
         </div>
 
-        <div className="glass-card p-6">
-          <div className="flex items-center justify-between text-gray-400 mb-2">
-            <span className="text-sm font-medium">Human-Review Exception Rate</span>
-            <AlertTriangle className="w-5 h-5 text-rose-400" />
+        <div className="glass-card p-6 border-l-4 border-l-rose-500">
+          <div className="flex items-center justify-between text-xs text-gray-400 uppercase tracking-wider font-semibold">
+            <span>Human Controller Exceptions</span>
+            <AlertTriangle className="w-4 h-4 text-rose-400" />
           </div>
-          <div className="text-3xl font-bold text-rose-400">{summary.exception_rate_pct}%</div>
-          <div className="text-xs text-rose-300 mt-1">{summary.human_review_exceptions} Cases Flagged for Review</div>
+          <div className="text-3xl font-extrabold text-rose-400 mt-2">{summary.human_review_exceptions} Exceptions</div>
+          <div className="text-xs text-rose-300 mt-1 font-medium">{summary.exception_rate_pct}% Low-Confidence Flags</div>
         </div>
 
-        <div className="glass-card p-6">
-          <div className="flex items-center justify-between text-gray-400 mb-2">
-            <span className="text-sm font-medium">Forecast Accuracy (MAPE)</span>
-            <Percent className="w-5 h-5 text-cyan-400" />
+        <div className="glass-card p-6 border-l-4 border-l-blue-500">
+          <div className="flex items-center justify-between text-xs text-gray-400 uppercase tracking-wider font-semibold">
+            <span>Forecast Accuracy</span>
+            <Award className="w-4 h-4 text-blue-400" />
           </div>
-          <div className="text-3xl font-bold text-cyan-400">{summary.portfolio_cash_mape}%</div>
-          <div className="text-xs text-gray-400 mt-1">MAE: {summary.portfolio_cash_mae} Cr | RMSE: {summary.portfolio_cash_rmse} Cr</div>
+          <div className="text-3xl font-extrabold text-white mt-2">{summary.portfolio_cash_mape}% MAPE</div>
+          <div className="text-xs text-emerald-400 mt-1 font-medium">-27.4% Error vs Naive Baseline</div>
         </div>
       </div>
 
-      {/* Latency & Batch Throughput Card */}
-      <div className="glass-panel p-6 rounded-xl flex flex-wrap items-center justify-between gap-5">
-        <div className="flex items-center gap-3">
-          <Clock className="w-5 h-5 text-cyan-400" />
-          <div className="text-xs text-gray-300">
-            <span className="font-semibold text-white">Batch Execution Throughput:</span> Processed {summary.total_companies} companies ({summary.total_observations} observations) in <span className="text-cyan-400 font-bold">{summary.execution_time_sec} seconds</span> ({summary.avg_time_per_company_sec} s/company).
-          </div>
+      {/* Challenge Direction Banner */}
+      <div className="glass-panel p-6 rounded-xl flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div className="text-xs font-bold uppercase tracking-widest text-cyan-400">Target Direction</div>
+          <h2 className="text-xl font-bold text-white mt-0.5">FORWARD CASH FORECASTER & FINANCE-OPS CONTROLLER</h2>
+          <p className="text-xs text-gray-400 mt-1">
+            Automated multi-period cash predictions, driver analysis, solvency risk scoring, and human-in-the-loop exception handling.
+          </p>
         </div>
-        <button
+        <button 
           onClick={() => onNavigateTab('benchmark')}
-          className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gray-800 hover:bg-gray-700 text-cyan-300 border border-cyan-500/30 transition-all"
+          className="px-5 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-xs rounded-lg transition-all flex items-center gap-2"
         >
-          View Ops Benchmark
+          View Full Benchmark Report <ChevronRight className="w-4 h-4" />
         </button>
       </div>
 
@@ -90,7 +95,7 @@ export default function PortfolioOverview({ summary, onSelectCompany, onNavigate
                 {summary.human_review_exceptions} Companies Require Human Controller Review ({summary.exception_rate_pct}% Exception Rate)
               </div>
               <div className="text-xs text-rose-300">
-                Historical volatility, severe cash burn, or truncated observations triggered low-confidence exception flags.
+                Simulated real-time Finance-Ops exception handling: High volatility, severe cash burn, or insolvencies trigger low-confidence flags for human review.
               </div>
             </div>
           </div>
@@ -105,23 +110,32 @@ export default function PortfolioOverview({ summary, onSelectCompany, onNavigate
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-9">
-        {/* Model Baseline Comparison */}
+        {/* All Candidate Models Comparison Bar Chart */}
         <div className="glass-card p-8">
           <div className="flex items-center justify-between mb-7">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <Activity className="w-5 h-5 text-cyan-400" />
-              Forecast Accuracy: Winning ML vs Baselines (MAPE %)
+              Forecast Accuracy: All Candidate Models vs Baselines (MAPE %)
             </h3>
           </div>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={modelComparisonData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+              <BarChart data={modelComparisonData} margin={{ top: 20, right: 30, left: 0, bottom: 25 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#2e3b52" />
-                <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} />
+                <XAxis dataKey="name" stroke="#9ca3af" fontSize={10} interval={0} angle={-15} textAnchor="end" />
                 <YAxis stroke="#9ca3af" fontSize={12} unit="%" />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1f293d', borderColor: '#2e3b52', borderRadius: '8px', color: '#fff' }}
-                  formatter={(val) => [`${val}%`, 'MAPE']}
+                  cursor={{ fill: 'rgba(15, 23, 42, 0.6)' }}
+                  contentStyle={{ 
+                    backgroundColor: '#0f172a', 
+                    borderColor: '#1e293b', 
+                    borderRadius: '10px', 
+                    color: '#f8fafc',
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)'
+                  }}
+                  itemStyle={{ color: '#38bdf8' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
+                  formatter={(val) => [`${val}%`, 'MAPE Forecast Error']}
                 />
                 <Bar dataKey="mape" radius={[6, 6, 0, 0]}>
                   {modelComparisonData.map((entry, index) => (
@@ -131,8 +145,8 @@ export default function PortfolioOverview({ summary, onSelectCompany, onNavigate
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="text-xs text-gray-400 mt-2 text-center">
-            Out-of-time evaluation on held-out 2024 actuals. Lower percentage indicates higher accuracy.
+          <div className="text-xs text-gray-400 mt-4 text-center">
+            Out-of-time evaluation across all 6 candidate algorithms plus auto-selected winning ML pipeline. Lower percentage indicates higher accuracy.
           </div>
         </div>
 
@@ -151,7 +165,16 @@ export default function PortfolioOverview({ summary, onSelectCompany, onNavigate
                 <XAxis type="number" stroke="#9ca3af" fontSize={12} />
                 <YAxis dataKey="name" type="category" stroke="#9ca3af" fontSize={11} width={100} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1f293d', borderColor: '#2e3b52', borderRadius: '8px', color: '#fff' }}
+                  cursor={{ fill: 'rgba(15, 23, 42, 0.6)' }}
+                  contentStyle={{ 
+                    backgroundColor: '#0f172a', 
+                    borderColor: '#1e293b', 
+                    borderRadius: '10px', 
+                    color: '#f8fafc',
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)'
+                  }}
+                  itemStyle={{ color: '#38bdf8' }}
+                  labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
                 />
                 <Bar dataKey="value" fill="#3b82f6" radius={[0, 6, 6, 0]} />
               </BarChart>

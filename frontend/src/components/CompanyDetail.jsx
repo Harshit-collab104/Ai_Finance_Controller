@@ -96,7 +96,6 @@ export default function CompanyDetail({ companies, selectedCompanyId, onSelectCo
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Resolution Status Badge */}
           <div className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border ${
             isResolved 
               ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' 
@@ -106,7 +105,6 @@ export default function CompanyDetail({ companies, selectedCompanyId, onSelectCo
             Status: {confidence.resolution_status}
           </div>
 
-          {/* Company Selector */}
           <select 
             value={selectedCompanyId} 
             onChange={(e) => onSelectCompany(e.target.value)}
@@ -202,7 +200,16 @@ export default function CompanyDetail({ companies, selectedCompanyId, onSelectCo
               <XAxis dataKey="period" stroke="#9ca3af" fontSize={11} />
               <YAxis stroke="#9ca3af" fontSize={11} label={{ value: 'Amount (Cr)', angle: -90, position: 'insideLeft', fill: '#9ca3af' }} />
               <Tooltip 
-                contentStyle={{ backgroundColor: '#1f293d', borderColor: '#2e3b52', borderRadius: '8px', color: '#fff' }} 
+                cursor={{ fill: 'rgba(15, 23, 42, 0.6)' }}
+                contentStyle={{ 
+                  backgroundColor: '#0f172a', 
+                  borderColor: '#1e293b', 
+                  borderRadius: '10px', 
+                  color: '#f8fafc',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)'
+                }}
+                itemStyle={{ color: '#38bdf8' }}
+                labelStyle={{ color: '#f8fafc', fontWeight: 'bold' }}
               />
               <Legend wrapperStyle={{ fontSize: '12px', color: '#9ca3af' }} />
               <Bar dataKey="Revenue" fill="#3b82f6" opacity={0.3} barSize={20} />

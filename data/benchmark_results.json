@@ -1,18 +1,38 @@
 {
   "execution_summary": {
-    "total_processing_time_sec": 7.127,
-    "avg_processing_time_per_company_sec": 0.1296
+    "total_processing_time_sec": 9.977,
+    "avg_processing_time_per_company_sec": 0.1814
   },
   "evaluation_summary": {
     "target_col": "cash",
     "companies_evaluated": 51,
     "total_observations": 204,
-    "execution_time_sec": 6.428,
-    "avg_time_per_company_sec": 0.1169,
+    "execution_time_sec": 9.132,
+    "avg_time_per_company_sec": 0.166,
     "overall_ml_metrics": {
       "mae": 10.74,
       "rmse": 19.99,
       "mape": 12.28
+    },
+    "overall_gbm_metrics": {
+      "mae": 84.95,
+      "rmse": 156.58,
+      "mape": 29.22
+    },
+    "overall_rf_metrics": {
+      "mae": 90.5,
+      "rmse": 165.48,
+      "mape": 28.69
+    },
+    "overall_ridge_metrics": {
+      "mae": 11.35,
+      "rmse": 20.04,
+      "mape": 24.01
+    },
+    "overall_holt_metrics": {
+      "mae": 24.27,
+      "rmse": 44.52,
+      "mape": 13.41
     },
     "overall_naive_metrics": {
       "mae": 61.73,

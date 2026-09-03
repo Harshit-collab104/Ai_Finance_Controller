@@ -22,8 +22,8 @@ The system measures operational throughput and distinguishes **Finance-Ops Resol
 | **Human-Review Exceptions** | **`8`** | Unreliable forecasts flagged for manual review |
 | **Resolution Rate** | **`85.45%`** | **Primary operational throughput metric** |
 | **Exception Rate** | **`14.55%`** | Low-confidence or volatile historical cases |
-| **Total Processing Time** | `4.296 s` | Complete batch pipeline execution latency |
-| **Average Time per Company** | `0.0781 s/company` | Measured throughput rate |
+| **Total Processing Time** | `9.977 s` | Complete batch pipeline execution latency |
+| **Average Time per Company** | `0.1814 s/company` | Measured throughput rate |
 
 ---
 

@@ -3,7 +3,13 @@ import numpy as np
 import pandas as pd
 from typing import Dict, List, Any
 from backend.config import TRAIN_PERIODS, TOTAL_PERIODS
-from backend.forecasting_engine import generate_company_forecasts, BaselineNaiveModel, MovingAverageModel
+from backend.forecasting_engine import (
+    generate_company_forecasts, 
+    BaselineNaiveModel, 
+    MovingAverageModel,
+    HoltExponentialSmoothingModel,
+    MLSequenceForecaster
+)
 
 def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
     if len(y_true) == 0:
@@ -12,7 +18,6 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
     mae = float(np.mean(np.abs(y_true - y_pred)))
     rmse = float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
     
-    # Avoid zero division in MAPE
     denom = np.maximum(0.1, np.abs(y_true))
     mape = float(np.mean(np.abs(y_true - y_pred) / denom) * 100.0)
     
@@ -27,13 +32,17 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
     Evaluates forecasting accuracy using strict time-based out-of-time split.
     Training: Periods 1 to 20 (2019-Q1 to 2023-Q4)
     Held-out Test: Periods 21 to 24 (2024-Q1 to 2024-Q4)
-    Also measures execution throughput and latency timing.
+    Evaluates all 6 individual candidate algorithms plus the auto-selected winning ensemble.
     """
     start_time = time.time()
     companies = df["company_id"].unique()
     
     y_true_all = []
     y_pred_ml_all = []
+    y_pred_gbm_all = []
+    y_pred_rf_all = []
+    y_pred_ridge_all = []
+    y_pred_holt_all = []
     y_pred_naive_all = []
     y_pred_ma_all = []
     
@@ -44,7 +53,6 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         c_df = df[df["company_id"] == c_id].sort_values("period_idx").reset_index(drop=True)
         category = c_df["category"].iloc[0]
 
-        # Training set up to period 20
         train_df = c_df[c_df["period_idx"] <= TRAIN_PERIODS]
         test_df = c_df[c_df["period_idx"] > TRAIN_PERIODS]
 
@@ -54,25 +62,39 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         test_horizon = len(test_df)
         actuals = test_df[target_col].values
 
-        # 1. Winning ML / Selected Model Forecast
+        # 1. Auto-Selected Winning ML Model Forecast
         res_ml = generate_company_forecasts(train_df, target_col=target_col, horizon=test_horizon)
         preds_ml = np.array(res_ml["predictions"][:test_horizon])
 
-        # 2. Naive Baseline
+        # 2. Individual Candidate Algorithms
+        gbm_mod = MLSequenceForecaster(model_type="gbm").fit(train_df, target_col)
+        preds_gbm = gbm_mod.predict(steps=test_horizon)
+
+        rf_mod = MLSequenceForecaster(model_type="rf").fit(train_df, target_col)
+        preds_rf = rf_mod.predict(steps=test_horizon)
+
+        ridge_mod = MLSequenceForecaster(model_type="linear").fit(train_df, target_col)
+        preds_ridge = ridge_mod.predict(steps=test_horizon)
+
+        holt_mod = HoltExponentialSmoothingModel().fit(None, train_df[target_col])
+        preds_holt = holt_mod.predict(steps=test_horizon)
+
         naive_mod = BaselineNaiveModel().fit(None, train_df[target_col])
         preds_naive = naive_mod.predict(steps=test_horizon)
 
-        # 3. Moving Average Baseline
         ma_mod = MovingAverageModel(window=3).fit(None, train_df[target_col])
         preds_ma = ma_mod.predict(steps=test_horizon)
 
         # Accumulate
         y_true_all.extend(actuals)
         y_pred_ml_all.extend(preds_ml)
+        y_pred_gbm_all.extend(preds_gbm)
+        y_pred_rf_all.extend(preds_rf)
+        y_pred_ridge_all.extend(preds_ridge)
+        y_pred_holt_all.extend(preds_holt)
         y_pred_naive_all.extend(preds_naive)
         y_pred_ma_all.extend(preds_ma)
 
-        # Per company metrics
         c_metrics = compute_metrics(actuals, preds_ml)
         company_evaluations.append({
             "company_id": c_id,
@@ -94,12 +116,15 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
     elapsed_sec = time.time() - start_time
     avg_sec_per_company = elapsed_sec / max(1, len(companies))
 
-    # Portfolio level metrics
+    # Portfolio level metrics across all individual candidate models
     overall_ml = compute_metrics(np.array(y_true_all), np.array(y_pred_ml_all))
+    overall_gbm = compute_metrics(np.array(y_true_all), np.array(y_pred_gbm_all))
+    overall_rf = compute_metrics(np.array(y_true_all), np.array(y_pred_rf_all))
+    overall_ridge = compute_metrics(np.array(y_true_all), np.array(y_pred_ridge_all))
+    overall_holt = compute_metrics(np.array(y_true_all), np.array(y_pred_holt_all))
     overall_naive = compute_metrics(np.array(y_true_all), np.array(y_pred_naive_all))
     overall_ma = compute_metrics(np.array(y_true_all), np.array(y_pred_ma_all))
 
-    # Profile category breakdown
     category_summary = {}
     for cat, data in category_results.items():
         if len(data["y_true"]) > 0:
@@ -112,6 +137,10 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         "execution_time_sec": round(elapsed_sec, 3),
         "avg_time_per_company_sec": round(avg_sec_per_company, 4),
         "overall_ml_metrics": overall_ml,
+        "overall_gbm_metrics": overall_gbm,
+        "overall_rf_metrics": overall_rf,
+        "overall_ridge_metrics": overall_ridge,
+        "overall_holt_metrics": overall_holt,
         "overall_naive_metrics": overall_naive,
         "overall_ma_metrics": overall_ma,
         "category_summary": category_summary,

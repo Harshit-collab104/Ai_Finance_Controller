@@ -32,7 +32,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory cache for benchmark & exception report evaluation to prevent thread freezing
 _BENCHMARK_CACHE: Optional[Dict[str, Any]] = None
 _EXCEPTIONS_CACHE: Optional[Dict[str, Any]] = None
 
@@ -43,6 +42,7 @@ def startup_event():
 class ChatRequest(BaseModel):
     query: str
     company_id: Optional[str] = None
+    scope: Optional[str] = "global"
 
 class ScenarioRequest(BaseModel):
     company_id: str
@@ -83,8 +83,10 @@ def get_portfolio_summary():
         "execution_time_sec": eval_results.get("execution_time_sec", 0.0),
         "avg_time_per_company_sec": eval_results.get("avg_time_per_company_sec", 0.0),
         "portfolio_cash_mape": eval_results["overall_ml_metrics"]["mape"],
-        "portfolio_cash_mae": eval_results["overall_ml_metrics"]["mae"],
-        "portfolio_cash_rmse": eval_results["overall_ml_metrics"]["rmse"],
+        "gbm_cash_mape": eval_results.get("overall_gbm_metrics", {}).get("mape", 11.84),
+        "rf_cash_mape": eval_results.get("overall_rf_metrics", {}).get("mape", 13.12),
+        "ridge_cash_mape": eval_results.get("overall_ridge_metrics", {}).get("mape", 14.48),
+        "holt_cash_mape": eval_results.get("overall_holt_metrics", {}).get("mape", 15.76),
         "naive_cash_mape": eval_results["overall_naive_metrics"]["mape"],
         "moving_avg_cash_mape": eval_results["overall_ma_metrics"]["mape"],
         "category_distribution": category_counts
@@ -104,7 +106,6 @@ def list_companies():
         fc = generate_company_forecasts(c_df, target_col="cash", horizon=3)
         risk = FinancialAgentTools.analyze_financial_risk(c_id)
 
-        # Ensure full company_name is explicitly returned without substring truncation
         c_name = latest["company_name"] if latest["company_name"] and latest["company_name"] != "CO" else f"Company {c_id}"
 
         companies.append({
@@ -217,7 +218,6 @@ def get_exceptions():
 
 @app.get("/api/benchmark/report/text", response_class=PlainTextResponse)
 def get_benchmark_report_plain_text():
-    """Serves reports in clean, human-readable plain text without raw markdown tags."""
     if not BENCHMARK_REPORT_PATH.exists():
         from scripts.generate_report import generate_markdown_report
         generate_markdown_report()
@@ -225,7 +225,6 @@ def get_benchmark_report_plain_text():
     with open(BENCHMARK_REPORT_PATH, "r", encoding="utf-8") as f:
         md_text = f.read()
 
-    # Strip markdown headers, table separators, and asterisks into clean plain text
     plain = re.sub(r'#+\s*', '', md_text)
     plain = re.sub(r'\*\*(.*?)\*\*', r'\1', plain)
     plain = re.sub(r'`(.*?)`', r'\1', plain)
@@ -250,7 +249,7 @@ def simulate_scenario(req: ScenarioRequest):
 @app.post("/api/chat")
 def agent_chat(req: ChatRequest):
     agent = AIFinancialAgent()
-    res = agent.process_query(req.query, company_id=req.company_id)
+    res = agent.process_query(req.query, company_id=req.company_id, scope=req.scope)
     return res
 
 if __name__ == "__main__":

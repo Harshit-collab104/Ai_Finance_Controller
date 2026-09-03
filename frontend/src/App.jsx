@@ -43,29 +43,28 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0b0f19] text-gray-100 flex flex-col">
-      {/* Top Header Navigation with Responsive Spacing */}
+      {/* Top Header Navigation */}
       <header className="border-b border-gray-800 bg-[#111827]/90 backdrop-blur-md sticky top-0 z-50 py-3.5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-3 shrink-0">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 shrink-0">
               <Activity className="w-6 h-6" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-base sm:text-lg font-bold text-white tracking-wide flex flex-wrap items-center gap-2">
+              <h1 className="text-base sm:text-lg font-bold text-white tracking-wide flex items-center gap-2">
                 AI FORWARD CASH CONTROLLER
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
                   Forward Cash Forecaster
                 </span>
               </h1>
-              <p className="text-xs text-gray-400 truncate">Finance-Ops Loop: Forecast ➜ Analyze Drivers ➜ Risk ➜ Resolution ➜ Action</p>
             </div>
           </div>
 
-          {/* Nav Tabs */}
-          <nav className="flex flex-wrap items-center gap-1.5 bg-gray-900/80 p-1.5 rounded-xl border border-gray-800 self-start lg:self-auto">
+          {/* Nav Tabs - All in One Line */}
+          <nav className="flex items-center gap-1.5 bg-gray-900/80 p-1.5 rounded-xl border border-gray-800 overflow-x-auto max-w-full no-scrollbar shrink-0">
             <button
               onClick={() => setActiveTab('portfolio')}
-              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
                 activeTab === 'portfolio' 
                   ? 'bg-cyan-500 text-white shadow-md shadow-cyan-500/20' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -77,7 +76,7 @@ export default function App() {
 
             <button
               onClick={() => setActiveTab('company')}
-              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
                 activeTab === 'company' 
                   ? 'bg-cyan-500 text-white shadow-md shadow-cyan-500/20' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -89,7 +88,7 @@ export default function App() {
 
             <button
               onClick={() => setActiveTab('agent')}
-              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
                 activeTab === 'agent' 
                   ? 'bg-cyan-500 text-white shadow-md shadow-cyan-500/20' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -101,7 +100,7 @@ export default function App() {
 
             <button
               onClick={() => setActiveTab('scenario')}
-              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
                 activeTab === 'scenario' 
                   ? 'bg-cyan-500 text-white shadow-md shadow-cyan-500/20' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -113,7 +112,7 @@ export default function App() {
 
             <button
               onClick={() => setActiveTab('benchmark')}
-              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
                 activeTab === 'benchmark' 
                   ? 'bg-cyan-500 text-white shadow-md shadow-cyan-500/20' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
