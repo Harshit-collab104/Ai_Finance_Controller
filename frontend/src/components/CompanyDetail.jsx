@@ -146,7 +146,7 @@ export default function CompanyDetail({ companies, selectedCompanyId, onSelectCo
           }`}>
             {risk.risk_level}
           </div>
-          <div className="text-xs text-gray-400 mt-1">Risk Score: {risk.risk_score}/10</div>
+          <div className="text-xs text-gray-400 mt-1">Risk Score: {typeof risk.risk_score === 'number' ? risk.risk_score.toFixed(1) : risk.risk_score}/10</div>
         </div>
 
         <div className="glass-card p-5">

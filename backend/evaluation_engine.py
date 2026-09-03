@@ -1,33 +1,35 @@
 import time
+from typing import Any
+
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Any
-from backend.config import TRAIN_PERIODS, TOTAL_PERIODS
+
+from backend.config import TRAIN_PERIODS
 from backend.forecasting_engine import (
-    generate_company_forecasts, 
-    BaselineNaiveModel, 
-    MovingAverageModel,
+    BaselineNaiveModel,
     HoltExponentialSmoothingModel,
-    MLSequenceForecaster
+    MLSequenceForecaster,
+    MovingAverageModel,
+    generate_company_forecasts,
 )
 
-def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
+
+def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
     if len(y_true) == 0:
         return {"mae": 0.0, "rmse": 0.0, "mape": 0.0}
-    
+
     mae = float(np.mean(np.abs(y_true - y_pred)))
     rmse = float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
-    
+
     denom = np.maximum(0.1, np.abs(y_true))
     mape = float(np.mean(np.abs(y_true - y_pred) / denom) * 100.0)
-    
-    return {
-        "mae": round(mae, 2),
-        "rmse": round(rmse, 2),
-        "mape": round(mape, 2)
-    }
 
-def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Dict[str, Any]:
+    return {"mae": round(mae, 2), "rmse": round(rmse, 2), "mape": round(mape, 2)}
+
+
+def run_out_of_time_evaluation(
+    df: pd.DataFrame, target_col: str = "cash"
+) -> dict[str, Any]:
     """
     Evaluates forecasting accuracy using strict time-based out-of-time split.
     Training: Periods 1 to 20 (2019-Q1 to 2023-Q4)
@@ -36,7 +38,7 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
     """
     start_time = time.time()
     companies = df["company_id"].unique()
-    
+
     y_true_all = []
     y_pred_ml_all = []
     y_pred_gbm_all = []
@@ -45,12 +47,16 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
     y_pred_holt_all = []
     y_pred_naive_all = []
     y_pred_ma_all = []
-    
+
     category_results = {}
     company_evaluations = []
 
     for c_id in companies:
-        c_df = df[df["company_id"] == c_id].sort_values("period_idx").reset_index(drop=True)
+        c_df = (
+            df[df["company_id"] == c_id]
+            .sort_values("period_idx")
+            .reset_index(drop=True)
+        )
         category = c_df["category"].iloc[0]
 
         train_df = c_df[c_df["period_idx"] <= TRAIN_PERIODS]
@@ -63,7 +69,9 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         actuals = test_df[target_col].values
 
         # 1. Auto-Selected Winning ML Model Forecast
-        res_ml = generate_company_forecasts(train_df, target_col=target_col, horizon=test_horizon)
+        res_ml = generate_company_forecasts(
+            train_df, target_col=target_col, horizon=test_horizon
+        )
         preds_ml = np.array(res_ml["predictions"][:test_horizon])
 
         # 2. Individual Candidate Algorithms
@@ -96,17 +104,19 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         y_pred_ma_all.extend(preds_ma)
 
         c_metrics = compute_metrics(actuals, preds_ml)
-        company_evaluations.append({
-            "company_id": c_id,
-            "company_name": c_df["company_name"].iloc[0],
-            "category": category,
-            "selected_model": res_ml["selected_model"],
-            "mae": c_metrics["mae"],
-            "rmse": c_metrics["rmse"],
-            "mape": c_metrics["mape"],
-            "actuals": [round(float(a), 2) for a in actuals],
-            "predictions": [round(float(p), 2) for p in preds_ml]
-        })
+        company_evaluations.append(
+            {
+                "company_id": c_id,
+                "company_name": c_df["company_name"].iloc[0],
+                "category": category,
+                "selected_model": res_ml["selected_model"],
+                "mae": c_metrics["mae"],
+                "rmse": c_metrics["rmse"],
+                "mape": c_metrics["mape"],
+                "actuals": [round(float(a), 2) for a in actuals],
+                "predictions": [round(float(p), 2) for p in preds_ml],
+            }
+        )
 
         if category not in category_results:
             category_results[category] = {"y_true": [], "y_pred": []}
@@ -128,7 +138,9 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
     category_summary = {}
     for cat, data in category_results.items():
         if len(data["y_true"]) > 0:
-            category_summary[cat] = compute_metrics(np.array(data["y_true"]), np.array(data["y_pred"]))
+            category_summary[cat] = compute_metrics(
+                np.array(data["y_true"]), np.array(data["y_pred"])
+            )
 
     return {
         "target_col": target_col,
@@ -144,5 +156,5 @@ def run_out_of_time_evaluation(df: pd.DataFrame, target_col: str = "cash") -> Di
         "overall_naive_metrics": overall_naive,
         "overall_ma_metrics": overall_ma,
         "category_summary": category_summary,
-        "company_evaluations": company_evaluations
+        "company_evaluations": company_evaluations,
     }

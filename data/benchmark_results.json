@@ -1,14 +1,14 @@
 {
   "execution_summary": {
-    "total_processing_time_sec": 9.977,
-    "avg_processing_time_per_company_sec": 0.1814
+    "total_processing_time_sec": 18.966,
+    "avg_processing_time_per_company_sec": 0.3448
   },
   "evaluation_summary": {
     "target_col": "cash",
     "companies_evaluated": 51,
     "total_observations": 204,
-    "execution_time_sec": 9.132,
-    "avg_time_per_company_sec": 0.166,
+    "execution_time_sec": 17.834,
+    "avg_time_per_company_sec": 0.3243,
     "overall_ml_metrics": {
       "mae": 10.74,
       "rmse": 19.99,
@@ -1180,9 +1180,12 @@
           "Sudden structural revenue shift of 51.2% detected in latest period."
         ],
         "financial_drivers": [
+          "Efficient Cost Structure: COGS of 16.20 Cr (61.5% of revenue).",
+          "Net Income Profitability (0.02 Cr) generating positive earnings.",
           "Negative Operating Cash Flow (-0.74 Cr) driven by operating expenses of 9.05 Cr.",
-          "Elevated Accounts Receivable (6.70 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 63.77 Cr)."
+          "Elevated Accounts Receivable (6.70 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (6.70 Cr) exceeds Accounts Payable (3.05 Cr).",
+          "Debt Service Burden: Total Debt of 63.77 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -1203,9 +1206,13 @@
           "Critical cash burn risk: Cash runway is only 0.2 quarters (0.5 Cr remaining)."
         ],
         "financial_drivers": [
+          "Elevated Cost of Goods Sold (16.39 Cr, 65.3% of revenue) compressing gross margin.",
+          "Net Operating Loss (-1.03 Cr) eroding equity and retained earnings.",
           "Negative Operating Cash Flow (-2.53 Cr) driven by operating expenses of 8.57 Cr.",
-          "Substantial Capital Expenditure (2.11 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 70.99 Cr)."
+          "Accounts Payable Commitments (2.96 Cr) creating short-term vendor payables pressure.",
+          "Working Capital Drag: Accounts Receivable (6.07 Cr) exceeds Accounts Payable (2.96 Cr).",
+          "Substantial Capital Expenditure (2.11 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 70.99 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -1225,7 +1232,10 @@
           "Insufficient historical observations (5 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (11.65 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 46.24 Cr (57.0% of revenue).",
+          "Net Income Profitability (10.22 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (11.65 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (17.25 Cr) exceeds Accounts Payable (12.19 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -1245,8 +1255,11 @@
           "Insufficient historical observations (3 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (8.60 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 54.26 Cr)."
+          "Efficient Cost Structure: COGS of 55.86 Cr (57.1% of revenue).",
+          "Net Income Profitability (7.15 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (8.60 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (23.89 Cr) exceeds Accounts Payable (13.46 Cr).",
+          "Debt Service Burden: Total Debt of 54.26 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -1266,8 +1279,11 @@
           "Insufficient historical observations (3 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (9.29 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (26.05 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 57.75 Cr (59.3% of revenue).",
+          "Net Income Profitability (7.18 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (9.29 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (26.05 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (26.05 Cr) exceeds Accounts Payable (15.78 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -1287,9 +1303,12 @@
           "Insufficient historical observations (5 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (16.37 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 50.39 Cr)."
+          "Efficient Cost Structure: COGS of 41.53 Cr (52.3% of revenue).",
+          "Net Income Profitability (11.02 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (16.37 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (20.48 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (20.48 Cr) exceeds Accounts Payable (7.67 Cr).",
+          "Debt Service Burden: Total Debt of 50.39 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -1310,10 +1329,13 @@
           "Sudden structural revenue shift of 655.5% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (181.20 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (305.33 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (60.23 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 52.90 Cr)."
+          "Efficient Cost Structure: COGS of 557.22 Cr (50.3% of revenue).",
+          "Net Income Profitability (140.04 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (181.20 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (305.33 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (305.33 Cr) exceeds Accounts Payable (125.02 Cr).",
+          "Substantial Capital Expenditure (60.23 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 52.90 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -1334,7 +1356,10 @@
           "Sudden structural revenue shift of 65.3% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (0.96 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 6.41 Cr (54.5% of revenue).",
+          "Net Income Profitability (0.82 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (0.96 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (2.67 Cr) exceeds Accounts Payable (1.52 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       }
@@ -1356,7 +1381,10 @@
           "Sudden structural revenue shift of 101.3% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (145.03 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 273.19 Cr (46.4% of revenue).",
+          "Net Income Profitability (125.10 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (145.03 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (142.95 Cr) exceeds Accounts Payable (75.50 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1376,7 +1404,10 @@
           "Sudden structural revenue shift of 59.6% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (52.29 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 93.42 Cr (45.0% of revenue).",
+          "Net Income Profitability (42.60 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (52.29 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (48.86 Cr) exceeds Accounts Payable (17.54 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1396,7 +1427,10 @@
           "Sudden structural revenue shift of 77.5% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (97.05 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 168.67 Cr (46.3% of revenue).",
+          "Net Income Profitability (86.86 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (97.05 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (86.76 Cr) exceeds Accounts Payable (45.65 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1416,8 +1450,11 @@
           "Sudden structural revenue shift of 59.1% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (47.13 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (49.33 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 92.84 Cr (47.8% of revenue).",
+          "Net Income Profitability (39.55 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (47.13 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (49.33 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (49.33 Cr) exceeds Accounts Payable (23.51 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1437,7 +1474,10 @@
           "Sudden structural revenue shift of 59.5% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (50.21 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 83.25 Cr (42.5% of revenue).",
+          "Net Income Profitability (43.18 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (50.21 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (43.08 Cr) exceeds Accounts Payable (15.52 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1457,8 +1497,11 @@
           "Sudden structural revenue shift of 69.1% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (79.48 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (71.59 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 105.58 Cr (40.8% of revenue).",
+          "Net Income Profitability (69.53 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (79.48 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (71.59 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (71.59 Cr) exceeds Accounts Payable (26.59 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1478,7 +1521,10 @@
           "Sudden structural revenue shift of 94.4% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (129.33 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 215.37 Cr (42.4% of revenue).",
+          "Net Income Profitability (113.42 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (129.33 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (106.68 Cr) exceeds Accounts Payable (42.00 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1498,7 +1544,10 @@
           "Sudden structural revenue shift of 72.4% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (69.13 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 148.29 Cr (47.8% of revenue).",
+          "Net Income Profitability (59.02 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (69.13 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (63.95 Cr) exceeds Accounts Payable (28.76 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1518,8 +1567,11 @@
           "Sudden structural revenue shift of 101.7% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (59.17 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (73.18 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 129.99 Cr (49.3% of revenue).",
+          "Net Income Profitability (51.77 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (59.17 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (73.18 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (73.18 Cr) exceeds Accounts Payable (35.00 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1539,8 +1591,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (68.48 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (70.84 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 112.61 Cr (45.8% of revenue).",
+          "Net Income Profitability (61.69 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (68.48 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (70.84 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (70.84 Cr) exceeds Accounts Payable (26.02 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1560,8 +1615,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (27.46 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (39.45 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 84.15 Cr (56.1% of revenue).",
+          "Net Income Profitability (20.14 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (27.46 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (39.45 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (39.45 Cr) exceeds Accounts Payable (16.28 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1581,7 +1639,10 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (16.65 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 66.86 Cr (53.3% of revenue).",
+          "Net Income Profitability (14.74 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (16.65 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (30.49 Cr) exceeds Accounts Payable (14.26 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1601,7 +1662,10 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (24.17 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 78.15 Cr (52.7% of revenue).",
+          "Net Income Profitability (21.10 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (24.17 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (34.60 Cr) exceeds Accounts Payable (17.59 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1621,7 +1685,10 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (9.47 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 59.52 Cr (58.7% of revenue).",
+          "Net Income Profitability (7.15 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (9.47 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (23.30 Cr) exceeds Accounts Payable (11.48 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1641,8 +1708,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (28.77 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (41.87 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 75.43 Cr (50.5% of revenue).",
+          "Net Income Profitability (24.00 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (28.77 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (41.87 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (41.87 Cr) exceeds Accounts Payable (17.93 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1662,8 +1732,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (21.86 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (34.85 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 66.21 Cr (56.9% of revenue).",
+          "Net Income Profitability (15.53 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (21.86 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (34.85 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (34.85 Cr) exceeds Accounts Payable (18.46 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1683,8 +1756,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (23.41 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (35.11 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 75.10 Cr (54.3% of revenue).",
+          "Net Income Profitability (16.04 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (23.41 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (35.11 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (35.11 Cr) exceeds Accounts Payable (17.77 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1704,8 +1780,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (20.50 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (32.58 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 64.27 Cr (55.5% of revenue).",
+          "Net Income Profitability (15.95 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (20.50 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (32.58 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (32.58 Cr) exceeds Accounts Payable (15.74 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1725,8 +1804,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (19.56 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 55.42 Cr)."
+          "Efficient Cost Structure: COGS of 72.72 Cr (53.8% of revenue).",
+          "Net Income Profitability (16.69 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (19.56 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (28.73 Cr) exceeds Accounts Payable (19.70 Cr).",
+          "Debt Service Burden: Total Debt of 55.42 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1746,7 +1828,10 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (30.52 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 117.01 Cr (59.0% of revenue).",
+          "Net Income Profitability (21.71 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (30.52 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (45.18 Cr) exceeds Accounts Payable (25.12 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1766,8 +1851,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (4.99 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 61.76 Cr)."
+          "Efficient Cost Structure: COGS of 30.09 Cr (63.7% of revenue).",
+          "Net Income Profitability (0.34 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (4.99 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (11.03 Cr) exceeds Accounts Payable (8.20 Cr).",
+          "Debt Service Burden: Total Debt of 61.76 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1787,10 +1875,13 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (4.95 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (15.03 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (2.07 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 81.03 Cr)."
+          "Efficient Cost Structure: COGS of 32.17 Cr (64.1% of revenue).",
+          "Net Income Profitability (0.44 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (4.95 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (15.03 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (15.03 Cr) exceeds Accounts Payable (6.69 Cr).",
+          "Substantial Capital Expenditure (2.07 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 81.03 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1810,10 +1901,14 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (2.71 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (5.27 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 74.11 Cr)."
+          "Elevated Cost of Goods Sold (46.65 Cr, 66.7% of revenue) compressing gross margin.",
+          "Net Income Profitability (0.46 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (2.71 Cr) supporting cash reserves.",
+          "Accounts Payable Commitments (12.33 Cr) creating short-term vendor payables pressure.",
+          "Elevated Accounts Receivable (20.48 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (20.48 Cr) exceeds Accounts Payable (12.33 Cr).",
+          "Substantial Capital Expenditure (5.27 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 74.11 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1833,8 +1928,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (6.65 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 74.18 Cr)."
+          "Efficient Cost Structure: COGS of 29.90 Cr (59.4% of revenue).",
+          "Net Income Profitability (1.97 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (6.65 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (11.75 Cr) exceeds Accounts Payable (6.10 Cr).",
+          "Debt Service Burden: Total Debt of 74.18 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1855,9 +1953,12 @@
           "Sudden structural revenue shift of 51.2% detected in latest period."
         ],
         "financial_drivers": [
+          "Efficient Cost Structure: COGS of 16.20 Cr (61.5% of revenue).",
+          "Net Income Profitability (0.02 Cr) generating positive earnings.",
           "Negative Operating Cash Flow (-0.74 Cr) driven by operating expenses of 9.05 Cr.",
-          "Elevated Accounts Receivable (6.70 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 63.77 Cr)."
+          "Elevated Accounts Receivable (6.70 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (6.70 Cr) exceeds Accounts Payable (3.05 Cr).",
+          "Debt Service Burden: Total Debt of 63.77 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -1878,9 +1979,13 @@
           "Critical cash burn risk: Cash runway is only 0.2 quarters (0.5 Cr remaining)."
         ],
         "financial_drivers": [
+          "Elevated Cost of Goods Sold (16.39 Cr, 65.3% of revenue) compressing gross margin.",
+          "Net Operating Loss (-1.03 Cr) eroding equity and retained earnings.",
           "Negative Operating Cash Flow (-2.53 Cr) driven by operating expenses of 8.57 Cr.",
-          "Substantial Capital Expenditure (2.11 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 70.99 Cr)."
+          "Accounts Payable Commitments (2.96 Cr) creating short-term vendor payables pressure.",
+          "Working Capital Drag: Accounts Receivable (6.07 Cr) exceeds Accounts Payable (2.96 Cr).",
+          "Substantial Capital Expenditure (2.11 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 70.99 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -1900,8 +2005,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (4.09 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 81.32 Cr)."
+          "Efficient Cost Structure: COGS of 32.50 Cr (61.7% of revenue).",
+          "Net Income Profitability (0.68 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (4.09 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (11.78 Cr) exceeds Accounts Payable (8.64 Cr).",
+          "Debt Service Burden: Total Debt of 81.32 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1921,10 +2029,14 @@
           "High cash flow volatility (Coefficient of Variation = 0.65 > 0.65 threshold)."
         ],
         "financial_drivers": [
+          "Elevated Cost of Goods Sold (35.23 Cr, 66.8% of revenue) compressing gross margin.",
+          "Net Operating Loss (-0.06 Cr) eroding equity and retained earnings.",
           "Negative Operating Cash Flow (-0.16 Cr) driven by operating expenses of 16.40 Cr.",
-          "Elevated Accounts Receivable (13.71 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (2.59 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 67.29 Cr)."
+          "Accounts Payable Commitments (8.09 Cr) creating short-term vendor payables pressure.",
+          "Elevated Accounts Receivable (13.71 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (13.71 Cr) exceeds Accounts Payable (8.09 Cr).",
+          "Substantial Capital Expenditure (2.59 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 67.29 Cr."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -1944,8 +2056,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (24.78 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 181.85 Cr)."
+          "Efficient Cost Structure: COGS of 115.42 Cr (60.0% of revenue).",
+          "Net Income Profitability (17.24 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (24.78 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (39.79 Cr) exceeds Accounts Payable (23.25 Cr).",
+          "Debt Service Burden: Total Debt of 181.85 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1965,8 +2080,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (40.02 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 138.22 Cr)."
+          "Efficient Cost Structure: COGS of 191.36 Cr (60.8% of revenue).",
+          "Net Income Profitability (27.34 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (40.02 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (68.28 Cr) exceeds Accounts Payable (48.12 Cr).",
+          "Debt Service Burden: Total Debt of 138.22 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -1986,9 +2104,12 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (15.20 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (34.09 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 182.32 Cr)."
+          "Efficient Cost Structure: COGS of 77.88 Cr (59.5% of revenue).",
+          "Net Income Profitability (8.33 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (15.20 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (34.09 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (34.09 Cr) exceeds Accounts Payable (17.00 Cr).",
+          "Debt Service Burden: Total Debt of 182.32 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2008,10 +2129,13 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (33.05 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (101.74 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (31.32 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 120.24 Cr)."
+          "Efficient Cost Structure: COGS of 217.66 Cr (61.7% of revenue).",
+          "Net Income Profitability (19.72 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (33.05 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (101.74 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (101.74 Cr) exceeds Accounts Payable (48.83 Cr).",
+          "Substantial Capital Expenditure (31.32 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 120.24 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2031,9 +2155,12 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (14.59 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (40.53 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 180.70 Cr)."
+          "Efficient Cost Structure: COGS of 87.27 Cr (60.5% of revenue).",
+          "Net Income Profitability (8.62 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (14.59 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (40.53 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (40.53 Cr) exceeds Accounts Payable (19.79 Cr).",
+          "Debt Service Burden: Total Debt of 180.70 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2053,8 +2180,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (21.52 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 129.49 Cr)."
+          "Efficient Cost Structure: COGS of 96.30 Cr (58.3% of revenue).",
+          "Net Income Profitability (16.65 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (21.52 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (38.80 Cr) exceeds Accounts Payable (23.65 Cr).",
+          "Debt Service Burden: Total Debt of 129.49 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2074,8 +2204,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (94.01 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (86.32 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 123.48 Cr (41.8% of revenue).",
+          "Net Income Profitability (85.99 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (94.01 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (86.32 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (86.32 Cr) exceeds Accounts Payable (22.59 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2095,8 +2228,11 @@
           "Sudden structural revenue shift of 67.9% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (100.01 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (91.84 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 141.00 Cr (41.7% of revenue).",
+          "Net Income Profitability (93.46 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (100.01 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (91.84 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (91.84 Cr) exceeds Accounts Payable (29.49 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2116,8 +2252,11 @@
           "Sudden structural revenue shift of 65.2% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (200.28 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (165.47 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 269.03 Cr (41.0% of revenue).",
+          "Net Income Profitability (185.26 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (200.28 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (165.47 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (165.47 Cr) exceeds Accounts Payable (59.70 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2137,7 +2276,10 @@
           "Sudden structural revenue shift of 68.5% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (152.46 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 219.90 Cr (41.5% of revenue).",
+          "Net Income Profitability (138.08 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (152.46 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (115.98 Cr) exceeds Accounts Payable (41.15 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2157,7 +2299,10 @@
           "Sudden structural revenue shift of 68.1% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (162.76 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 169.12 Cr (36.1% of revenue).",
+          "Net Income Profitability (153.00 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (162.76 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (107.22 Cr) exceeds Accounts Payable (34.90 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2177,8 +2322,11 @@
           "Sudden structural revenue shift of 67.3% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (131.42 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (109.78 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 168.14 Cr (40.0% of revenue).",
+          "Net Income Profitability (123.90 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (131.42 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (109.78 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (109.78 Cr) exceeds Accounts Payable (42.95 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2198,9 +2346,13 @@
           "High cash flow volatility (Coefficient of Variation = 11.12 > 0.65 threshold)."
         ],
         "financial_drivers": [
+          "Elevated Cost of Goods Sold (35.07 Cr, 67.2% of revenue) compressing gross margin.",
+          "Net Operating Loss (-2.09 Cr) eroding equity and retained earnings.",
           "Negative Operating Cash Flow (-0.16 Cr) driven by operating expenses of 17.78 Cr.",
-          "Substantial Capital Expenditure (4.69 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 83.48 Cr)."
+          "Accounts Payable Commitments (8.08 Cr) creating short-term vendor payables pressure.",
+          "Working Capital Drag: Accounts Receivable (12.34 Cr) exceeds Accounts Payable (8.08 Cr).",
+          "Substantial Capital Expenditure (4.69 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 83.48 Cr."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2220,10 +2372,14 @@
           "High cash flow volatility (Coefficient of Variation = 22.52 > 0.65 threshold)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (1.85 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (25.09 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (5.73 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 71.63 Cr)."
+          "Elevated Cost of Goods Sold (59.81 Cr, 69.2% of revenue) compressing gross margin.",
+          "Net Operating Loss (-3.67 Cr) eroding equity and retained earnings.",
+          "Positive Operating Cash Flow (1.85 Cr) supporting cash reserves.",
+          "Accounts Payable Commitments (14.67 Cr) creating short-term vendor payables pressure.",
+          "Elevated Accounts Receivable (25.09 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (25.09 Cr) exceeds Accounts Payable (14.67 Cr).",
+          "Substantial Capital Expenditure (5.73 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 71.63 Cr."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2243,9 +2399,13 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (7.09 Cr) supporting cash balance.",
-          "Substantial Capital Expenditure (6.13 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 75.29 Cr)."
+          "Efficient Cost Structure: COGS of 58.94 Cr (63.2% of revenue).",
+          "Net Income Profitability (3.01 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (7.09 Cr) supporting cash reserves.",
+          "Accounts Payable Commitments (12.89 Cr) creating short-term vendor payables pressure.",
+          "Working Capital Drag: Accounts Receivable (22.15 Cr) exceeds Accounts Payable (12.89 Cr).",
+          "Substantial Capital Expenditure (6.13 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 75.29 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2265,9 +2425,12 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (5.01 Cr) supporting cash balance.",
-          "Substantial Capital Expenditure (7.05 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 70.71 Cr)."
+          "Efficient Cost Structure: COGS of 49.91 Cr (63.2% of revenue).",
+          "Net Income Profitability (0.65 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (5.01 Cr) supporting cash reserves.",
+          "Accounts Payable Commitments (13.48 Cr) creating short-term vendor payables pressure.",
+          "Substantial Capital Expenditure (7.05 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 70.71 Cr."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2287,7 +2450,10 @@
           "Insufficient historical observations (5 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (11.65 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 46.24 Cr (57.0% of revenue).",
+          "Net Income Profitability (10.22 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (11.65 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (17.25 Cr) exceeds Accounts Payable (12.19 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -2307,8 +2473,11 @@
           "Insufficient historical observations (3 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (8.60 Cr) supporting cash balance.",
-          "Heavy Debt Service Burden (Total Debt: 54.26 Cr)."
+          "Efficient Cost Structure: COGS of 55.86 Cr (57.1% of revenue).",
+          "Net Income Profitability (7.15 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (8.60 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (23.89 Cr) exceeds Accounts Payable (13.46 Cr).",
+          "Debt Service Burden: Total Debt of 54.26 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -2328,8 +2497,11 @@
           "Insufficient historical observations (3 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (9.29 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (26.05 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 57.75 Cr (59.3% of revenue).",
+          "Net Income Profitability (7.18 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (9.29 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (26.05 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (26.05 Cr) exceeds Accounts Payable (15.78 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -2349,9 +2521,12 @@
           "Insufficient historical observations (5 periods available; minimum 6 required)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (16.37 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (20.48 Cr) absorbing liquidity in working capital.",
-          "Heavy Debt Service Burden (Total Debt: 50.39 Cr)."
+          "Efficient Cost Structure: COGS of 41.53 Cr (52.3% of revenue).",
+          "Net Income Profitability (11.02 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (16.37 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (20.48 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (20.48 Cr) exceeds Accounts Payable (7.67 Cr).",
+          "Debt Service Burden: Total Debt of 50.39 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Conduct manual financial assessment before relying on automated cash projection."
       },
@@ -2372,10 +2547,13 @@
           "Sudden structural revenue shift of 655.5% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (181.20 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (305.33 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (60.23 Cr) requiring cash outlay.",
-          "Heavy Debt Service Burden (Total Debt: 52.90 Cr)."
+          "Efficient Cost Structure: COGS of 557.22 Cr (50.3% of revenue).",
+          "Net Income Profitability (140.04 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (181.20 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (305.33 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (305.33 Cr) exceeds Accounts Payable (125.02 Cr).",
+          "Substantial Capital Expenditure (60.23 Cr) requiring cash capital outlay.",
+          "Debt Service Burden: Total Debt of 52.90 Cr."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -2395,9 +2573,12 @@
           "High cash flow volatility (Coefficient of Variation = 1.30 > 0.65 threshold)."
         ],
         "financial_drivers": [
+          "Elevated Cost of Goods Sold (125.78 Cr, 94.2% of revenue) compressing gross margin.",
+          "Net Operating Loss (-34.98 Cr) eroding equity and retained earnings.",
           "Negative Operating Cash Flow (-30.19 Cr) driven by operating expenses of 42.18 Cr.",
-          "Elevated Accounts Receivable (39.20 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (10.69 Cr) requiring cash outlay."
+          "Elevated Accounts Receivable (39.20 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (39.20 Cr) exceeds Accounts Payable (23.17 Cr).",
+          "Substantial Capital Expenditure (10.69 Cr) requiring cash capital outlay."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2417,8 +2598,11 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (10.99 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (36.53 Cr) absorbing liquidity in working capital."
+          "Efficient Cost Structure: COGS of 64.03 Cr (50.4% of revenue).",
+          "Net Income Profitability (4.80 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (10.99 Cr) supporting cash reserves.",
+          "Elevated Accounts Receivable (36.53 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (36.53 Cr) exceeds Accounts Payable (15.75 Cr)."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       },
@@ -2438,9 +2622,13 @@
           "High cash flow volatility (Coefficient of Variation = 2.58 > 0.65 threshold)."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (0.13 Cr) supporting cash balance.",
-          "Elevated Accounts Receivable (25.73 Cr) absorbing liquidity in working capital.",
-          "Substantial Capital Expenditure (7.63 Cr) requiring cash outlay."
+          "Efficient Cost Structure: COGS of 54.60 Cr (59.2% of revenue).",
+          "Net Operating Loss (-5.97 Cr) eroding equity and retained earnings.",
+          "Positive Operating Cash Flow (0.13 Cr) supporting cash reserves.",
+          "Accounts Payable Commitments (10.89 Cr) creating short-term vendor payables pressure.",
+          "Elevated Accounts Receivable (25.73 Cr) locking liquidity in customer receivables.",
+          "Working Capital Drag: Accounts Receivable (25.73 Cr) exceeds Accounts Payable (10.89 Cr).",
+          "Substantial Capital Expenditure (7.63 Cr) requiring cash capital outlay."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2460,7 +2648,10 @@
           "Sudden structural revenue shift of 79.7% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (78.55 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 273.21 Cr (52.4% of revenue).",
+          "Net Income Profitability (56.76 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (78.55 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (126.47 Cr) exceeds Accounts Payable (50.04 Cr)."
         ],
         "controller_action": "Forecast accepted with caution. Monitor upcoming quarter receivables collection and vendor payables."
       },
@@ -2481,7 +2672,10 @@
           "Sudden structural revenue shift of 65.3% detected in latest period."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (0.96 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 6.41 Cr (54.5% of revenue).",
+          "Net Income Profitability (0.82 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (0.96 Cr) supporting cash reserves.",
+          "Working Capital Drag: Accounts Receivable (2.67 Cr) exceeds Accounts Payable (1.52 Cr)."
         ],
         "controller_action": "HUMAN REVIEW: Perform detailed cash flow variance audit on recent operational transactions."
       },
@@ -2501,7 +2695,9 @@
           "Stable historical cash flow trajectory and robust balance sheet liquidity."
         ],
         "financial_drivers": [
-          "Positive Operating Cash Flow (16.75 Cr) supporting cash balance."
+          "Efficient Cost Structure: COGS of 66.01 Cr (59.3% of revenue).",
+          "Net Income Profitability (12.16 Cr) generating positive earnings.",
+          "Positive Operating Cash Flow (16.75 Cr) supporting cash reserves."
         ],
         "controller_action": "Automated cash forecast accepted. Standard working capital monitoring."
       }

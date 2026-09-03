@@ -1,7 +1,8 @@
+import random
+
 import numpy as np
 import pandas as pd
-import random
-from typing import List, Dict
+
 from backend.config import CSV_FILE_PATH
 
 # Seed for reproducible synthetic financial dataset
@@ -9,28 +10,71 @@ np.random.seed(42)
 random.seed(42)
 
 COMPANY_NAMES = [
-    "Apex Tech Solutions", "Horizon Logistics", "Beacon Healthcare", "Vanguard Manufacturing",
-    "Solaris Energy", "Quantum Dynamics", "Pinnacle Bio", "Nexus Cloud Systems",
-    "Titan Heavy Industries", "Aura Consumer Goods", "Sterling Retail", "Frontier Aerospace",
-    "Omni Financial", "Atlas Infrastructure", "Velox Medical Devices", "Echo Communications",
-    "Crestline Automotive", "Zenith Software", "Orion Chemicals", "Meridian Materials",
-    "Pulse Digital", "Veritas Agritech", "Hyperion Robotics", "Catalyst Renewables",
-    "Summit Real Estate", "Starlight Media", "Vortex Defense", "Solstice Pharma",
-    "Prism Gaming", "Cascade Beverage", "Novus Microelectronics", "Valence Metals",
-    "Infinitum Supply Chain", "Aegis Security", "Terra CleanTech", "Core Analytics",
-    "Radiant Lighting", "Synthetix Genetics", "Velocity Mobility", "AeroVentures",
-    "BlueShift Logistics", "Elysium Networks", "Kinetix Motors", "Optima Health",
-    "Alpha Micro-Cap (Truncated)", "Beta Startup (Truncated)", "Gamma Ventures (Truncated)", "Delta Tech (Truncated)",
-    "Shockwave Retail (Revenue Spike)", "Volatile Dynamics (Expense Spike)", "BurnRate Systems (Insolvent)", "CashDrain Inc (Insolvent)",
-    "Chaos Labs (High Volatility)", "Turbulence Capital (High Volatility)", "Wildcard Corp (High Volatility)"
+    "Apex Tech Solutions",
+    "Horizon Logistics",
+    "Beacon Healthcare",
+    "Vanguard Manufacturing",
+    "Solaris Energy",
+    "Quantum Dynamics",
+    "Pinnacle Bio",
+    "Nexus Cloud Systems",
+    "Titan Heavy Industries",
+    "Aura Consumer Goods",
+    "Sterling Retail",
+    "Frontier Aerospace",
+    "Omni Financial",
+    "Atlas Infrastructure",
+    "Velox Medical Devices",
+    "Echo Communications",
+    "Crestline Automotive",
+    "Zenith Software",
+    "Orion Chemicals",
+    "Meridian Materials",
+    "Pulse Digital",
+    "Veritas Agritech",
+    "Hyperion Robotics",
+    "Catalyst Renewables",
+    "Summit Real Estate",
+    "Starlight Media",
+    "Vortex Defense",
+    "Solstice Pharma",
+    "Prism Gaming",
+    "Cascade Beverage",
+    "Novus Microelectronics",
+    "Valence Metals",
+    "Infinitum Supply Chain",
+    "Aegis Security",
+    "Terra CleanTech",
+    "Core Analytics",
+    "Radiant Lighting",
+    "Synthetix Genetics",
+    "Velocity Mobility",
+    "AeroVentures",
+    "BlueShift Logistics",
+    "Elysium Networks",
+    "Kinetix Motors",
+    "Optima Health",
+    "Alpha Micro-Cap (Truncated)",
+    "Beta Startup (Truncated)",
+    "Gamma Ventures (Truncated)",
+    "Delta Tech (Truncated)",
+    "Shockwave Retail (Revenue Spike)",
+    "Volatile Dynamics (Expense Spike)",
+    "BurnRate Systems (Insolvent)",
+    "CashDrain Inc (Insolvent)",
+    "Chaos Labs (High Volatility)",
+    "Turbulence Capital (High Volatility)",
+    "Wildcard Corp (High Volatility)",
 ]
 
-def generate_periods() -> List[str]:
+
+def generate_periods() -> list[str]:
     periods = []
     for year in range(2019, 2025):
         for q in range(1, 5):
             periods.append(f"{year}-Q{q}")
     return periods
+
 
 def generate_company_dataset() -> pd.DataFrame:
     all_periods = generate_periods()
@@ -38,13 +82,8 @@ def generate_company_dataset() -> pd.DataFrame:
     records = []
 
     # Assign category profiles
-    categories = [
-        "Growing", "Stable", "Declining", "Highly Leveraged",
-        "Cash-Rich", "Cash-Constrained", "Highly Volatile"
-    ]
-
     for i in range(total_companies):
-        c_id = f"C{i+1:03d}"
+        c_id = f"C{i + 1:03d}"
         c_name = COMPANY_NAMES[i] if i < len(COMPANY_NAMES) else f"Company {c_id}"
 
         # Assign profile behavior
@@ -64,14 +103,18 @@ def generate_company_dataset() -> pd.DataFrame:
             category = "Highly Volatile"
 
         # Edge cases & exception flags
-        is_truncated = 44 <= i <= 47  # C045 - C048: Only 3 to 5 historical periods available
-        is_spike = 48 <= i <= 49      # C049 - C050: Sudden extreme revenue/expense spike
-        is_insolvent = 50 <= i <= 51  # C051 - C052: Severe cash burn exceeding liquidity
+        is_truncated = (
+            44 <= i <= 47
+        )  # C045 - C048: Only 3 to 5 historical periods available
+        is_spike = 48 <= i <= 49  # C049 - C050: Sudden extreme revenue/expense spike
+        is_insolvent = (
+            50 <= i <= 51
+        )  # C051 - C052: Severe cash burn exceeding liquidity
         is_wild_volatile = 52 <= i <= 54  # C053 - C055: Extreme chaotic volatility
 
         # Historical periods subset
         if is_truncated:
-            company_periods = all_periods[:random.randint(3, 5)]
+            company_periods = all_periods[: random.randint(3, 5)]
         else:
             company_periods = all_periods
 
@@ -139,14 +182,14 @@ def generate_company_dataset() -> pd.DataFrame:
         for p_idx, p_name in enumerate(company_periods):
             # Quarterly trend evolution
             seasonal_factor = 1.0 + 0.06 * np.sin(p_idx * np.pi / 2.0)
-            
+
             if is_wild_volatile:
                 noise = np.random.uniform(-0.45, 0.45)
             else:
                 noise = np.random.normal(0.0, 0.03)
 
             rev = current_rev * (1.0 + rev_growth_rate + noise) * seasonal_factor
-            
+
             # Inject sudden spike in period 19/20 for spike test cases
             if is_spike and p_idx >= len(company_periods) - 2:
                 if i == 48:
@@ -156,14 +199,14 @@ def generate_company_dataset() -> pd.DataFrame:
 
             cogs = rev * cogs_ratio * (1.0 + np.random.uniform(-0.02, 0.02))
             opex = rev * opex_ratio * (1.0 + np.random.uniform(-0.02, 0.02))
-            
+
             # Additional cost injection for insolvent test cases
             if is_insolvent:
                 opex *= 1.45  # Heavy cash burn
 
             gross_profit = rev - cogs
             operating_income = gross_profit - opex
-            
+
             # Debt interest
             interest_expense = (st_debt * 0.08 + lt_debt * 0.06) / 4.0
             tax_expense = max(0.0, (operating_income - interest_expense) * 0.25)
@@ -178,40 +221,42 @@ def generate_company_dataset() -> pd.DataFrame:
             depreciation = opex * 0.12
             working_capital_change = np.random.uniform(-3.0, 3.0)
             ocf = net_income + depreciation + working_capital_change
-            
+
             capex = max(1.0, rev * np.random.uniform(0.04, 0.09))
             icf = -capex + np.random.uniform(0.0, 1.5)
-            
+
             # Financing CF (debt servicing & dividends)
             debt_change = np.random.uniform(-2.0, 2.0)
             fcf = debt_change - max(0.0, net_income * 0.15)
-            
+
             net_cash_flow = ocf + icf + fcf
-            
+
             # Update cash balance accounting relation
             current_cash = max(0.5, current_cash + net_cash_flow)
 
-            records.append({
-                "company_id": c_id,
-                "company_name": c_name,
-                "category": category,
-                "period": p_name,
-                "period_idx": p_idx + 1,
-                "revenue": round(rev, 2),
-                "cost_of_goods_sold": round(cogs, 2),
-                "operating_expenses": round(opex, 2),
-                "net_income": round(net_income, 2),
-                "cash": round(current_cash, 2),
-                "accounts_receivable": round(ar, 2),
-                "inventory": round(inventory, 2),
-                "accounts_payable": round(ap, 2),
-                "short_term_debt": round(st_debt, 2),
-                "long_term_debt": round(lt_debt, 2),
-                "capital_expenditure": round(capex, 2),
-                "operating_cash_flow": round(ocf, 2),
-                "investing_cash_flow": round(icf, 2),
-                "financing_cash_flow": round(fcf, 2)
-            })
+            records.append(
+                {
+                    "company_id": c_id,
+                    "company_name": c_name,
+                    "category": category,
+                    "period": p_name,
+                    "period_idx": p_idx + 1,
+                    "revenue": round(rev, 2),
+                    "cost_of_goods_sold": round(cogs, 2),
+                    "operating_expenses": round(opex, 2),
+                    "net_income": round(net_income, 2),
+                    "cash": round(current_cash, 2),
+                    "accounts_receivable": round(ar, 2),
+                    "inventory": round(inventory, 2),
+                    "accounts_payable": round(ap, 2),
+                    "short_term_debt": round(st_debt, 2),
+                    "long_term_debt": round(lt_debt, 2),
+                    "capital_expenditure": round(capex, 2),
+                    "operating_cash_flow": round(ocf, 2),
+                    "investing_cash_flow": round(icf, 2),
+                    "financing_cash_flow": round(fcf, 2),
+                }
+            )
 
             # Update next period base revenue
             current_rev = rev / seasonal_factor
@@ -219,11 +264,15 @@ def generate_company_dataset() -> pd.DataFrame:
     df = pd.DataFrame(records)
     return df
 
+
 def save_dataset() -> pd.DataFrame:
     df = generate_company_dataset()
     df.to_csv(CSV_FILE_PATH, index=False)
-    print(f"Generated synthetic dataset with {len(df)} observations across {df['company_id'].nunique()} companies.")
+    print(
+        f"Generated synthetic dataset with {len(df)} observations across {df['company_id'].nunique()} companies."
+    )
     return df
+
 
 if __name__ == "__main__":
     save_dataset()

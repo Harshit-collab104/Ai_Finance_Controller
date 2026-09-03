@@ -1,12 +1,13 @@
-import pandas as pd
+from typing import Any
 import numpy as np
-from typing import Dict, List, Any
+import pandas as pd
 
-def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
+def evaluate_forecast_confidence(df_company: pd.DataFrame) -> dict[str, Any]:
     """
-    Evaluates historical data depth, volatility, structural shifts, and cash burn
-    to assign confidence scores, resolution status, exception type, financial drivers,
-    and grounded controller action recommendations.
+    Evaluates historical data depth, volatility, structural shifts, cash burn,
+    COGS margins, Net Income profitability, Accounts Payable/Receivable working capital,
+    and solvency risk to assign confidence scores, resolution status, exception type,
+    financial drivers, and grounded controller action recommendations.
     """
     c_df = df_company.sort_values("period_idx").reset_index(drop=True)
     c_id = c_df["company_id"].iloc[0]
@@ -20,33 +21,55 @@ def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
     confidence_score = 1.0
     exception_type = "NONE"
 
-    # Analyze operational drivers
-    rev = latest["revenue"]
-    cogs = latest["cost_of_goods_sold"]
-    opex = latest["operating_expenses"]
-    net_inc = latest["net_income"]
-    cash = latest["cash"]
-    ocf = latest["operating_cash_flow"]
-    ar = latest["accounts_receivable"]
-    ap = latest["accounts_payable"]
-    st_debt = latest["short_term_debt"]
-    lt_debt = latest["long_term_debt"]
-    capex = latest["capital_expenditure"]
+    # Analyze operational drivers including COGS, Net Income, and Accounts Payable
+    rev = float(latest["revenue"])
+    cogs = float(latest["cost_of_goods_sold"])
+    opex = float(latest["operating_expenses"])
+    net_inc = float(latest["net_income"])
+    cash = float(latest["cash"])
+    ocf = float(latest["operating_cash_flow"])
+    ar = float(latest["accounts_receivable"])
+    ap = float(latest["accounts_payable"])
+    st_debt = float(latest["short_term_debt"])
+    lt_debt = float(latest["long_term_debt"])
+    capex = float(latest["capital_expenditure"])
 
-    # 1. Driver Extraction
+    # 1. Driver Extraction (COGS, Net Income, Accounts Payable, AR, OCF, Debt)
+    # COGS Margin Driver
+    cogs_pct = (cogs / (rev + 1e-3)) * 100.0
+    if cogs_pct > 65.0:
+        drivers.append(f"Elevated Cost of Goods Sold ({cogs:.2f} Cr, {cogs_pct:.1f}% of revenue) compressing gross margin.")
+    else:
+        drivers.append(f"Efficient Cost Structure: COGS of {cogs:.2f} Cr ({cogs_pct:.1f}% of revenue).")
+
+    # Net Income Driver
+    if net_inc < 0:
+        drivers.append(f"Net Operating Loss ({net_inc:.2f} Cr) eroding equity and retained earnings.")
+    else:
+        drivers.append(f"Net Income Profitability ({net_inc:.2f} Cr) generating positive earnings.")
+
+    # Operating Cash Flow Driver
     if ocf < 0:
         drivers.append(f"Negative Operating Cash Flow ({ocf:.2f} Cr) driven by operating expenses of {opex:.2f} Cr.")
     else:
-        drivers.append(f"Positive Operating Cash Flow ({ocf:.2f} Cr) supporting cash balance.")
+        drivers.append(f"Positive Operating Cash Flow ({ocf:.2f} Cr) supporting cash reserves.")
+
+    # Accounts Payable (AP) & Accounts Receivable (AR) Working Capital Driver
+    if ap > (rev * 0.20) or ap > cash:
+        drivers.append(f"Accounts Payable Commitments ({ap:.2f} Cr) creating short-term vendor payables pressure.")
 
     if ar > (rev * 0.25):
-        drivers.append(f"Elevated Accounts Receivable ({ar:.2f} Cr) absorbing liquidity in working capital.")
+        drivers.append(f"Elevated Accounts Receivable ({ar:.2f} Cr) locking liquidity in customer receivables.")
 
+    if ar > (1.3 * ap) and ap > 0:
+        drivers.append(f"Working Capital Drag: Accounts Receivable ({ar:.2f} Cr) exceeds Accounts Payable ({ap:.2f} Cr).")
+
+    # CapEx & Debt Drivers
     if capex > (cash * 0.15):
-        drivers.append(f"Substantial Capital Expenditure ({capex:.2f} Cr) requiring cash outlay.")
+        drivers.append(f"Substantial Capital Expenditure ({capex:.2f} Cr) requiring cash capital outlay.")
 
     if (st_debt + lt_debt) > 50.0:
-        drivers.append(f"Heavy Debt Service Burden (Total Debt: {(st_debt + lt_debt):.2f} Cr).")
+        drivers.append(f"Debt Service Burden: Total Debt of {(st_debt + lt_debt):.2f} Cr.")
 
     # 2. Confidence & Exception Triggers
     # Condition A: Insufficient Historical Data
@@ -77,7 +100,7 @@ def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
             confidence_score -= 0.40
             if exception_type == "NONE":
                 exception_type = "STRUCTURAL_BREAK"
-            reasons.append(f"Sudden structural revenue shift of {shift_ratio*100:.1f}% detected in latest period.")
+            reasons.append(f"Sudden structural revenue shift of {shift_ratio * 100:.1f}% detected in latest period.")
 
     # Condition D: Cash Burn & Insolvency Risk
     if ocf < 0 and cash > 0:
@@ -94,7 +117,6 @@ def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
             exception_type = "INSOLVENCY_WARNING"
         reasons.append("Insolvency warning: Current cash balance is exhausted or negative.")
 
-    # Clamp confidence score
     confidence_score = max(0.0, min(1.0, confidence_score))
 
     # 3. Assign Resolution Status & Confidence Classification
@@ -113,7 +135,6 @@ def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
         else:
             resolution_status = "NEEDS_HUMAN_REVIEW"
 
-        # Grounded Controller Action
         if exception_type == "SEVERE_CASH_BURN":
             controller_action = "URGENT ACTION: Audit cash burn rate, freeze non-essential CapEx, and initiate short-term credit line review."
         elif exception_type == "HIGH_VOLATILITY":
@@ -140,10 +161,11 @@ def evaluate_forecast_confidence(df_company: pd.DataFrame) -> Dict[str, Any]:
         "exception_type": exception_type,
         "reasons": reasons,
         "financial_drivers": drivers,
-        "controller_action": controller_action
+        "controller_action": controller_action,
     }
 
-def generate_portfolio_exception_report(df: pd.DataFrame) -> Dict[str, Any]:
+
+def generate_portfolio_exception_report(df: pd.DataFrame) -> dict[str, Any]:
     companies = df["company_id"].unique()
     reports = []
     exceptions = []
@@ -172,5 +194,5 @@ def generate_portfolio_exception_report(df: pd.DataFrame) -> Dict[str, Any]:
         "resolution_rate_pct": resolution_rate_pct,
         "exception_rate_pct": exception_rate_pct,
         "exception_list": exceptions,
-        "all_confidence_reports": reports
+        "all_confidence_reports": reports,
     }

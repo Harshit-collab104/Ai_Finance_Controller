@@ -42,8 +42,15 @@ def generate_forecasts_csv():
     out_dir = Path("data")
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "forecasted_cash_positions.csv"
-    out_df.to_csv(out_path, index=False)
-    print(f"[SUCCESS] Forecasted cash CSV generated at {out_path.resolve()}")
+    
+    try:
+        out_df.to_csv(out_path, index=False)
+        print(f"[SUCCESS] Forecasted cash CSV generated at {out_path.resolve()}")
+    except PermissionError:
+        backup_path = out_dir / "forecasted_cash_positions_latest.csv"
+        out_df.to_csv(backup_path, index=False)
+        print(f"[WARN] Main CSV file locked by another application. Wrote to backup at {backup_path.resolve()}")
+
     return out_df
 
 if __name__ == "__main__":

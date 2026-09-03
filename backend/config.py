@@ -13,7 +13,7 @@ BENCHMARK_JSON_PATH = DATA_DIR / "benchmark_results.json"
 # Evaluation Split Parameters
 TOTAL_PERIODS = 24  # 2019-Q1 to 2024-Q4 (6 years)
 TRAIN_PERIODS = 20  # 2019-Q1 to 2023-Q4 (5 years training split)
-TEST_PERIODS = 4    # 2024-Q1 to 2024-Q4 (1 year out-of-time evaluation split)
+TEST_PERIODS = 4  # 2024-Q1 to 2024-Q4 (1 year out-of-time evaluation split)
 
 # Company Categories
 CATEGORIES = [
@@ -23,7 +23,7 @@ CATEGORIES = [
     "Highly Leveraged",
     "Cash-Rich",
     "Cash-Constrained",
-    "Highly Volatile"
+    "Highly Volatile",
 ]
 
 # API Keys & LLM settings

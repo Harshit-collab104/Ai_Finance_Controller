@@ -1,36 +1,44 @@
+from typing import Any
+
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Any
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import Ridge
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from statsmodels.tsa.api import Holt
+
 
 class BaselineNaiveModel:
     def fit(self, X, y):
-        self.last_val = y.iloc[-1] if hasattr(y, 'iloc') else y[-1]
+        self.last_val = y.iloc[-1] if hasattr(y, "iloc") else y[-1]
         return self
 
     def predict(self, steps=1):
         return np.full(steps, self.last_val)
+
 
 class MovingAverageModel:
     def __init__(self, window=3):
         self.window = window
 
     def fit(self, X, y):
-        vals = y.values if hasattr(y, 'values') else np.array(y)
-        self.ma_val = np.mean(vals[-self.window:]) if len(vals) >= self.window else np.mean(vals)
+        vals = y.values if hasattr(y, "values") else np.array(y)
+        self.ma_val = (
+            np.mean(vals[-self.window :]) if len(vals) >= self.window else np.mean(vals)
+        )
         return self
 
     def predict(self, steps=1):
         return np.full(steps, self.ma_val)
 
+
 class HoltExponentialSmoothingModel:
     def fit(self, X, y):
-        vals = y.values if hasattr(y, 'values') else np.array(y)
+        vals = y.values if hasattr(y, "values") else np.array(y)
         try:
             if len(vals) >= 4:
-                model = Holt(vals, initialization_method="estimated").fit(smoothing_level=0.4, smoothing_trend=0.2)
+                model = Holt(vals, initialization_method="estimated").fit(
+                    smoothing_level=0.4, smoothing_trend=0.2
+                )
                 self.model = model
                 self.fallback_val = None
             else:
@@ -48,7 +56,10 @@ class HoltExponentialSmoothingModel:
                 return np.maximum(0.1, preds)
             except Exception:
                 pass
-        return np.full(steps, self.fallback_val if self.fallback_val is not None else 10.0)
+        return np.full(
+            steps, self.fallback_val if self.fallback_val is not None else 10.0
+        )
+
 
 class MLSequenceForecaster:
     def __init__(self, model_type="rf"):
@@ -56,28 +67,38 @@ class MLSequenceForecaster:
         if model_type == "linear":
             self.model = Ridge(alpha=1.0)
         elif model_type == "rf":
-            self.model = RandomForestRegressor(n_estimators=30, max_depth=4, random_state=42)
+            self.model = RandomForestRegressor(
+                n_estimators=30, max_depth=4, random_state=42
+            )
         elif model_type == "gbm":
-            self.model = GradientBoostingRegressor(n_estimators=30, max_depth=3, random_state=42)
+            self.model = GradientBoostingRegressor(
+                n_estimators=30, max_depth=3, random_state=42
+            )
         else:
             self.model = Ridge(alpha=1.0)
 
-    def _create_features(self, df_comp: pd.DataFrame, target_col: str) -> Tuple[np.ndarray, np.ndarray]:
+    def _create_features(
+        self, df_comp: pd.DataFrame, target_col: str
+    ) -> tuple[np.ndarray, np.ndarray]:
         vals = df_comp[target_col].values
         rev = df_comp["revenue"].values if "revenue" in df_comp else vals
-        ocf = df_comp["operating_cash_flow"].values if "operating_cash_flow" in df_comp else vals
+        ocf = (
+            df_comp["operating_cash_flow"].values
+            if "operating_cash_flow" in df_comp
+            else vals
+        )
 
         X, y = [], []
         # Require lag 1 and lag 2
         for i in range(2, len(vals)):
             feat = [
-                vals[i-1],                    # Target Lag 1
-                vals[i-2],                    # Target Lag 2
-                vals[i-1] - vals[i-2],        # Momentum
-                np.mean(vals[max(0, i-3):i]), # 3-period Rolling Mean
-                rev[i-1] if i < len(rev) else vals[i-1],
-                ocf[i-1] if i < len(ocf) else vals[i-1],
-                i                             # Time index
+                vals[i - 1],  # Target Lag 1
+                vals[i - 2],  # Target Lag 2
+                vals[i - 1] - vals[i - 2],  # Momentum
+                np.mean(vals[max(0, i - 3) : i]),  # 3-period Rolling Mean
+                rev[i - 1] if i < len(rev) else vals[i - 1],
+                ocf[i - 1] if i < len(ocf) else vals[i - 1],
+                i,  # Time index
             ]
             X.append(feat)
             y.append(vals[i])
@@ -103,20 +124,32 @@ class MLSequenceForecaster:
 
         predictions = []
         history = list(self.last_vals)
-        rev_history = list(self.df_comp["revenue"].values) if "revenue" in self.df_comp else list(history)
-        ocf_history = list(self.df_comp["operating_cash_flow"].values) if "operating_cash_flow" in self.df_comp else list(history)
+        rev_history = (
+            list(self.df_comp["revenue"].values)
+            if "revenue" in self.df_comp
+            else list(history)
+        )
+        ocf_history = (
+            list(self.df_comp["operating_cash_flow"].values)
+            if "operating_cash_flow" in self.df_comp
+            else list(history)
+        )
 
         for step in range(steps):
             t_idx = len(history)
-            feat = np.array([[
-                history[-1],
-                history[-2],
-                history[-1] - history[-2],
-                np.mean(history[-3:]),
-                rev_history[-1],
-                ocf_history[-1],
-                t_idx
-            ]])
+            feat = np.array(
+                [
+                    [
+                        history[-1],
+                        history[-2],
+                        history[-1] - history[-2],
+                        np.mean(history[-3:]),
+                        rev_history[-1],
+                        ocf_history[-1],
+                        t_idx,
+                    ]
+                ]
+            )
             pred = self.model.predict(feat)[0]
             # Ensure non-negative bounds where appropriate
             pred = max(0.1, pred)
@@ -129,10 +162,8 @@ class MLSequenceForecaster:
 
 
 def generate_company_forecasts(
-    df_company: pd.DataFrame,
-    target_col: str = "cash",
-    horizon: int = 4
-) -> Dict[str, Any]:
+    df_company: pd.DataFrame, target_col: str = "cash", horizon: int = 4
+) -> dict[str, Any]:
     """
     Fits baseline and ML models for a single company, evaluates candidate models
     on validation tail, selects the best model, and outputs multi-step forecasts.
@@ -147,7 +178,7 @@ def generate_company_forecasts(
             "selected_model": "Naive Baseline (Short History)",
             "predictions": [round(float(p), 2) for p in preds],
             "validation_mape": 0.0,
-            "confidence_score": 0.3
+            "confidence_score": 0.3,
         }
 
     # Split for validation (last 2 available train periods)
@@ -161,7 +192,7 @@ def generate_company_forecasts(
         "Exponential Smoothing": HoltExponentialSmoothingModel(),
         "Ridge Linear Regression": MLSequenceForecaster(model_type="linear"),
         "Random Forest Regressor": MLSequenceForecaster(model_type="rf"),
-        "Gradient Boosting Regressor": MLSequenceForecaster(model_type="gbm")
+        "Gradient Boosting Regressor": MLSequenceForecaster(model_type="gbm"),
     }
 
     best_model_name = "Naive Baseline"
@@ -213,5 +244,7 @@ def generate_company_forecasts(
     return {
         "selected_model": best_model_name,
         "predictions": [round(float(p), 2) for p in final_preds],
-        "validation_mape": round(float(best_mape if best_mape != float("inf") else 0.0), 2)
+        "validation_mape": round(
+            float(best_mape if best_mape != float("inf") else 0.0), 2
+        ),
     }

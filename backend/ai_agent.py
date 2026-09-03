@@ -1,20 +1,18 @@
 import os
 import json
 import re
-import numpy as np
-import pandas as pd
-from typing import Dict, List, Any, Optional
+from typing import Any, Optional
 from dotenv import load_dotenv
 
 # Explicitly load .env file into environment memory
 load_dotenv()
 
 from backend.database import get_company_records, get_all_records
-from backend.ratio_engine import compute_financial_ratios, get_latest_company_ratios
+from backend.ratio_engine import get_latest_company_ratios
 from backend.forecasting_engine import generate_company_forecasts
 from backend.exception_engine import evaluate_forecast_confidence, generate_portfolio_exception_report
 from backend.scenario_engine import run_what_if_scenario
-from backend.config import GEMINI_API_KEY, OPENAI_API_KEY
+from backend.config import GEMINI_API_KEY
 
 try:
     from google import genai
@@ -30,7 +28,7 @@ class FinancialAgentTools:
     """
     
     @staticmethod
-    def get_company_financials(company_id: str) -> Dict[str, Any]:
+    def get_company_financials(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -41,24 +39,24 @@ class FinancialAgentTools:
             "company_name": c_name,
             "category": latest["category"],
             "period": latest["period"],
-            "revenue": latest["revenue"],
-            "cost_of_goods_sold": latest["cost_of_goods_sold"],
-            "operating_expenses": latest["operating_expenses"],
-            "net_income": latest["net_income"],
-            "cash": latest["cash"],
-            "accounts_receivable": latest["accounts_receivable"],
-            "inventory": latest["inventory"],
-            "accounts_payable": latest["accounts_payable"],
-            "short_term_debt": latest["short_term_debt"],
-            "long_term_debt": latest["long_term_debt"],
-            "capital_expenditure": latest["capital_expenditure"],
-            "operating_cash_flow": latest["operating_cash_flow"],
-            "investing_cash_flow": latest["investing_cash_flow"],
-            "financing_cash_flow": latest["financing_cash_flow"]
+            "revenue": float(latest["revenue"]),
+            "cost_of_goods_sold": float(latest["cost_of_goods_sold"]),
+            "operating_expenses": float(latest["operating_expenses"]),
+            "net_income": float(latest["net_income"]),
+            "cash": float(latest["cash"]),
+            "accounts_receivable": float(latest["accounts_receivable"]),
+            "inventory": float(latest["inventory"]),
+            "accounts_payable": float(latest["accounts_payable"]),
+            "short_term_debt": float(latest["short_term_debt"]),
+            "long_term_debt": float(latest["long_term_debt"]),
+            "capital_expenditure": float(latest["capital_expenditure"]),
+            "operating_cash_flow": float(latest["operating_cash_flow"]),
+            "investing_cash_flow": float(latest["investing_cash_flow"]),
+            "financing_cash_flow": float(latest["financing_cash_flow"])
         }
 
     @staticmethod
-    def calculate_financial_ratios(company_id: str) -> Dict[str, Any]:
+    def calculate_financial_ratios(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -91,7 +89,7 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def get_historical_trends(company_id: str) -> Dict[str, Any]:
+    def get_historical_trends(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -106,14 +104,14 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def forecast_cash(company_id: str) -> Dict[str, Any]:
+    def forecast_cash(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
         
         conf = evaluate_forecast_confidence(df)
         forecast_res = generate_company_forecasts(df, target_col="cash", horizon=3)
-        current_cash = df["cash"].iloc[-1]
+        current_cash = float(df["cash"].iloc[-1])
         preds = forecast_res["predictions"]
 
         return {
@@ -135,13 +133,13 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def forecast_revenue(company_id: str) -> Dict[str, Any]:
+    def forecast_revenue(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
         
         forecast_res = generate_company_forecasts(df, target_col="revenue", horizon=3)
-        current_rev = df["revenue"].iloc[-1]
+        current_rev = float(df["revenue"].iloc[-1])
         preds = forecast_res["predictions"]
 
         return {
@@ -157,7 +155,13 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def analyze_financial_risk(company_id: str) -> Dict[str, Any]:
+    def analyze_financial_risk(company_id: str) -> dict[str, Any]:
+        """
+        Calculates a continuous decimal financial risk score (1.0 to 10.0)
+        spanning LOW RISK (1.0-3.9), MEDIUM RISK (4.0-6.9), and HIGH RISK (7.0-10.0).
+        Evaluates liquidity, leverage, COGS margin, Net Income loss, Accounts Payable (AP),
+        Accounts Receivable (AR) drag, revenue growth, and cash burn runway.
+        """
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -167,49 +171,119 @@ class FinancialAgentTools:
         conf = evaluate_forecast_confidence(df)
         c_name = latest["company_name"] if latest["company_name"] and latest["company_name"] != "CO" else f"Company {company_id}"
 
-        risk_score = 0
+        raw_score = 1.0
         risk_factors = []
 
-        current_ratio = ratios.get("current_ratio", 1.5)
-        if current_ratio < 1.0:
-            risk_score += 3
-            risk_factors.append(f"Low Current Ratio ({current_ratio:.2f} < 1.0): Short-term liquidity crunch risk.")
-        elif current_ratio < 1.3:
-            risk_score += 1
-            risk_factors.append(f"Tight Current Ratio ({current_ratio:.2f}).")
+        rev = float(latest["revenue"])
+        cogs = float(latest["cost_of_goods_sold"])
+        net_inc = float(latest["net_income"])
+        cash = float(latest["cash"])
+        ocf = float(latest["operating_cash_flow"])
+        ar = float(latest["accounts_receivable"])
+        ap = float(latest["accounts_payable"])
 
-        debt_equity = ratios.get("debt_to_equity", 0.5)
-        if debt_equity > 2.5:
-            risk_score += 3
-            risk_factors.append(f"High Debt-to-Equity ({debt_equity:.2f}): Heavy interest burden.")
-        elif debt_equity > 1.5:
-            risk_score += 1
-            risk_factors.append(f"Elevated Debt-to-Equity ({debt_equity:.2f}).")
+        # 1. Liquidity Risk (Current Ratio)
+        cr = ratios.get("current_ratio", 1.5)
+        if cr < 0.9:
+            raw_score += 3.5
+            risk_factors.append(f"Severe Liquidity Stress: Current Ratio ({cr:.2f} < 0.9) indicates short-term insolvency risk.")
+        elif cr < 1.15:
+            raw_score += 2.5
+            risk_factors.append(f"Tight Liquidity: Current Ratio ({cr:.2f} < 1.15) indicates minimal debt coverage buffer.")
+        elif cr < 1.4:
+            raw_score += 1.5
+            risk_factors.append(f"Moderate Current Ratio ({cr:.2f}).")
+        elif cr < 1.8:
+            raw_score += 1.0
+            risk_factors.append(f"Fair Liquidity Buffer ({cr:.2f}).")
+        elif cr < 2.5:
+            raw_score += 0.5
+
+        # 2. Leverage Risk (Debt-to-Equity & Interest Coverage)
+        de = ratios.get("debt_to_equity", 0.5)
+        cov = ratios.get("interest_coverage", 10.0)
+        if de > 2.5 or cov < 1.5:
+            raw_score += 3.0
+            risk_factors.append(f"High Financial Leverage: Debt-to-Equity ({de:.2f} > 2.5) increases interest obligation risk.")
+        elif de > 1.5 or cov < 3.0:
+            raw_score += 2.0
+            risk_factors.append(f"Elevated Debt-to-Equity ({de:.2f} > 1.5).")
+        elif de > 0.7 or cov < 6.0:
+            raw_score += 1.0
+            risk_factors.append(f"Moderate Leverage ({de:.2f}).")
+        elif de > 0.3:
+            raw_score += 0.5
+
+        # 3. Margins & Growth (COGS, Net Profit Margin, Revenue Growth)
+        cogs_pct = (cogs / (rev + 1e-3)) * 100.0
+        if cogs_pct > 65.0:
+            raw_score += 1.5
+            risk_factors.append(f"High Direct Costs: COGS represents {cogs_pct:.1f}% of revenue, compressing gross margin.")
+        elif cogs_pct > 50.0:
+            raw_score += 0.5
 
         net_margin = ratios.get("net_profit_margin", 0.1)
         if net_margin < 0:
-            risk_score += 2
-            risk_factors.append(f"Negative Net Profit Margin ({net_margin*100:.1f}%): Operating losses.")
+            raw_score += 2.5
+            risk_factors.append(f"Net Loss Margin ({net_margin*100:.1f}%): Operating losses depleting equity reserves.")
+        elif net_margin < 0.05:
+            raw_score += 1.5
+            risk_factors.append(f"Thin Net Margin ({net_margin*100:.1f}%).")
+        elif net_margin < 0.12:
+            raw_score += 0.5
 
-        ocf = latest["operating_cash_flow"]
-        cash = latest["cash"]
+        rev_growth = ratios.get("revenue_growth", 0.0)
+        if rev_growth < -0.05:
+            raw_score += 1.5
+            risk_factors.append(f"Negative Revenue Growth ({rev_growth*100:.1f}% period-over-period).")
+        elif rev_growth < 0.02:
+            raw_score += 1.0
+
+        ocf_slope = ratios.get("ocf_trend_slope", 0.0)
+        if ocf_slope < -2.0:
+            raw_score += 1.5
+            risk_factors.append("Declining Operating Cash Flow trajectory.")
+        elif ocf_slope < 0.0:
+            raw_score += 0.5
+
+        # 4. Working Capital Drag (Accounts Payable & Accounts Receivable)
+        if ar > (rev * 0.22):
+            raw_score += 1.0
+            risk_factors.append(f"Accounts Receivable Lockup ({ar:.2f} Cr) absorbing liquidity in uncollected invoices.")
+
+        if ap > (rev * 0.15) or ap > cash:
+            raw_score += 1.0
+            risk_factors.append(f"Accounts Payable Commitments ({ap:.2f} Cr) creating short-term vendor liability pressure.")
+
+        # 5. Operating Cash Flow & Cash Runway
         if ocf < 0:
-            risk_score += 3
-            runway = cash / (abs(ocf) + 1e-3)
-            risk_factors.append(f"Negative Operating Cash Flow ({ocf:.1f} Cr). Cash runway: {runway:.1f} quarters.")
+            raw_score += 2.0
+            if cash > 0:
+                runway = cash / (abs(ocf) + 1e-3)
+                if runway < 2.0:
+                    raw_score += 2.0
+                    risk_factors.append(f"Critical Cash Burn: Cash runway is only {runway:.1f} quarters ({cash:.2f} Cr cash).")
+                elif runway < 4.0:
+                    raw_score += 1.0
+                    risk_factors.append(f"Moderate Cash Runway: {runway:.1f} quarters remaining.")
 
-        if risk_score >= 6:
+        final_score = round(max(1.0, min(10.0, raw_score)), 1)
+
+        if final_score >= 7.0:
             risk_level = "HIGH RISK"
-        elif risk_score >= 3:
+        elif final_score >= 4.0:
             risk_level = "MEDIUM RISK"
         else:
             risk_level = "LOW RISK"
+
+        if not risk_factors:
+            risk_factors.append("Low risk balance sheet with healthy liquidity, strong margins, and minimal debt.")
 
         return {
             "company_id": company_id,
             "company_name": c_name,
             "risk_level": risk_level,
-            "risk_score": risk_score,
+            "risk_score": final_score,
             "risk_factors": risk_factors,
             "forecast_confidence": conf["confidence_status"],
             "resolution_status": conf["resolution_status"],
@@ -217,14 +291,14 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def get_forecast_confidence(company_id: str) -> Dict[str, Any]:
+    def get_forecast_confidence(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
         return evaluate_forecast_confidence(df)
 
     @staticmethod
-    def generate_finance_action(company_id: str) -> Dict[str, Any]:
+    def generate_finance_action(company_id: str) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -243,12 +317,12 @@ class FinancialAgentTools:
         }
 
     @staticmethod
-    def get_exception_report() -> Dict[str, Any]:
+    def get_exception_report() -> dict[str, Any]:
         df = get_all_records()
         return generate_portfolio_exception_report(df)
 
     @staticmethod
-    def run_scenario(company_id: str, revenue_change_pct: float, opex_change_pct: float, capex_adjustment: float) -> Dict[str, Any]:
+    def run_scenario(company_id: str, revenue_change_pct: float, opex_change_pct: float, capex_adjustment: float) -> dict[str, Any]:
         df = get_company_records(company_id)
         if df.empty:
             return {"error": f"Company {company_id} not found."}
@@ -271,7 +345,7 @@ class AIFinancialAgent:
             except Exception as e:
                 print(f"[WARN] Failed to initialize Gemini Client: {e}")
 
-    def process_query(self, query: str, company_id: Optional[str] = None, scope: Optional[str] = None) -> Dict[str, Any]:
+    def process_query(self, query: str, company_id: Optional[str] = None, scope: Optional[str] = None) -> dict[str, Any]:
         query_upper = query.upper()
         
         is_global_query = (
@@ -372,7 +446,7 @@ class AIFinancialAgent:
         # 2. Fallback Deterministic Synthesis Engine
         return self._deterministic_fallback(query, company_id, evidence_context, is_scenario_query)
 
-    def _process_global_query(self, query: str) -> Dict[str, Any]:
+    def _process_global_query(self, query: str) -> dict[str, Any]:
         """Handles portfolio-wide queries across all 55 companies."""
         exception_report = self.tools.get_exception_report()
 
@@ -406,7 +480,7 @@ class AIFinancialAgent:
         answer_parts.append("### 🛡️ **Portfolio-Wide Low-Confidence Exception Report**\n")
         answer_parts.append(f"* **Total Companies Analyzed**: `{exception_report['total_companies']}`")
         answer_parts.append(f"* **Automated Forecast Resolution Rate**: `{exception_report['resolution_rate_pct']}%` ({exception_report['resolved_forecasts']}/55 companies resolved)")
-        answer_parts.append(f"* **Human-Review Exception Flags**: `{exception_report['human_review_exceptions']}` companies ({exception_rate_pct}% exception rate)\n")
+        answer_parts.append(f"* **Human-Review Exception Flags**: `{exception_report['human_review_exceptions']}` companies ({exception_report['exception_rate_pct']}% exception rate)\n")
         
         answer_parts.append("#### 📋 Flagged Exception Companies Requiring Manual Review:\n")
         for exc in exception_report["exception_list"]:
@@ -424,7 +498,7 @@ class AIFinancialAgent:
             "evidence": exception_report
         }
 
-    def _deterministic_fallback(self, query: str, company_id: str, evidence: Dict[str, Any], is_scenario: bool) -> Dict[str, Any]:
+    def _deterministic_fallback(self, query: str, company_id: str, evidence: dict[str, Any], is_scenario: bool) -> dict[str, Any]:
         financials = evidence["financials"]
         ratios = evidence["ratios"]
         cash_fc = evidence.get("cash_forecast", {})
@@ -472,7 +546,7 @@ class AIFinancialAgent:
 
         elif is_risk_query and not is_forecast_query:
             answer_parts.append(f"### ⚠️ **Financial Risk Assessment: {c_name}**\n")
-            answer_parts.append(f"* **Risk Level**: **`{risk['risk_level']}`** (Risk Score: {risk['risk_score']}/10)")
+            answer_parts.append(f"* **Risk Level**: **`{risk['risk_level']}`** (Risk Score: {risk['risk_score']:.1f}/10)")
             answer_parts.append("\n**Primary Risk Drivers & Triggers:**")
             for factor in risk["risk_factors"]:
                 answer_parts.append(f"* {factor}")
@@ -513,7 +587,7 @@ class AIFinancialAgent:
             answer_parts.append("")
 
             answer_parts.append("#### 3. Financial Risk Assessment")
-            answer_parts.append(f"* **Risk Level**: **`{risk['risk_level']}`** (Score: {risk['risk_score']}/10)")
+            answer_parts.append(f"* **Risk Level**: **`{risk['risk_level']}`** (Score: {risk['risk_score']:.1f}/10)")
             for factor in risk["risk_factors"]:
                 answer_parts.append(f"  - {factor}")
             answer_parts.append("")
