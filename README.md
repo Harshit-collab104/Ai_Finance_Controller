@@ -126,7 +126,6 @@ python -m scripts.generate_report
 
 ```bash
 # Start FastAPI backend server on http://127.0.0.1:8000
-python -m backend.main
 ```
 
 ### 3. Start the Web Dashboard
@@ -163,25 +162,3 @@ The LLM Financial Agent uses quantitative tools to gather evidence before answer
 10. `run_scenario(company_id, revenue_change_pct, opex_change_pct, capex_adjustment)`
 
 ---
-
-## ✅ Final Acceptance Criteria Checklist
-
-- [x] **50+ synthetic financial records/companies processed**: 55 companies, 1,240 records.
-- [x] **Historical financial data used**: Balance sheet, income statement, cash flow statements.
-- [x] **Future cash actually forecast**: 30, 60, 90-day multi-period predictions.
-- [x] **Evaluated against unseen data**: Out-of-time split (2019–2023 train vs 2024 held-out test).
-- [x] **MAE/RMSE/MAPE calculated**: 12.28% MAPE, 10.74 Cr MAE, 19.99 Cr RMSE.
-- [x] **Baseline models retained**: Naive & Moving Average baselines benchmarked.
-- [x] **Forecast confidence calculated**: Quantitative scoring (HIGH, MEDIUM, LOW).
-- [x] **Low-confidence cases not hidden**: Explicit exception report generated.
-- [x] **Every unresolved case appears in exception report**: 8 human review cases listed with exception types & reasons.
-- [x] **Agent explains forecast drivers**: Bulleted financial drivers extracted from evidence.
-- [x] **Agent identifies financial risk**: Quantitative risk scoring (`LOW RISK`, `MEDIUM RISK`, `HIGH RISK`).
-- [x] **Grounded controller action provided**: Operational review recommendation for every company.
-- [x] **Scenario analysis works**: What-if simulator recalculates statement deltas labeled `SCENARIO - NOT A FORECAST`.
-- [x] **Dashboard displays complete workflow**: 5-step Finance-Ops Loop cards and badges.
-- [x] **Portfolio-level throughput measured**: Execution time and latency per company recorded.
-- [x] **Resolution/exception rate measured**: 85.45% Resolution Rate / 14.55% Exception Rate.
-- [x] **README identifies Forward Cash Forecaster**: Explicitly stated as chosen challenge direction.
-- [x] **No unrelated challenge directions added**: Only Forward Cash Forecaster implemented.
-- [x] **Existing working functionality preserved**: All dataset generator, ML engines, and UI code updated cleanly.

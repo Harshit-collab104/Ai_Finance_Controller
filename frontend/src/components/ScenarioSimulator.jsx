@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Sliders, Activity, AlertCircle, ArrowUpRight, ArrowDownRight, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Sliders, RefreshCw } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { apiFetch } from '../apiConfig';
 
@@ -8,14 +8,26 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
   const [opexChange, setOpexChange] = useState(0);
   const [capexAdj, setCapexAdj] = useState(0);
   const [scenarioRes, setScenarioRes] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const debounceTimerRef = useRef(null);
 
+  // Debounced API fetch so backend calls don't flood on every pixel slider drag tick
   useEffect(() => {
-    runSimulation();
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      runSimulation();
+    }, 200);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
   }, [selectedCompanyId, revChange, opexChange, capexAdj]);
 
   const runSimulation = async () => {
-    setLoading(true);
     try {
       const res = await apiFetch('/api/scenario', {
         method: 'POST',
@@ -32,49 +44,51 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
       setScenarioRes(data);
     } catch (err) {
       console.error("Scenario simulation error:", err);
-    } finally {
-      setLoading(false);
     }
   };
 
-  // Instant real-time synchronous chart computation for 60fps slider drag responsiveness
   const activeCompanyObj = companies.find(c => c.company_id === selectedCompanyId);
   const companyName = scenarioRes?.company_name || activeCompanyObj?.company_name || `Company ${selectedCompanyId}`;
   
   const curCash = scenarioRes?.baseline_latest?.cash_balance ?? activeCompanyObj?.current_cash ?? 50.0;
   const baseFc90d = scenarioRes?.baseline_latest?.forecast_cash_90d ?? activeCompanyObj?.forecast_cash_90d ?? 45.0;
+  const curOpex = activeCompanyObj?.operating_expenses ?? (curCash * 0.25);
 
+  // Instant 60FPS real-time synchronous chart computation for smooth slider drag
   const chartData = useMemo(() => {
-    if (scenarioRes) {
-      const { baseline_latest, cash_trajectory } = scenarioRes;
-      return [
-        { period: 'Current', Baseline: baseline_latest.cash_balance, Scenario: baseline_latest.cash_balance },
-        { period: 'Month 1 / Q1', Baseline: cash_trajectory.quarter_1.base, Scenario: cash_trajectory.quarter_1.scenario },
-        { period: 'Month 2 / Q2', Baseline: cash_trajectory.quarter_2.base, Scenario: cash_trajectory.quarter_2.scenario },
-        { period: 'Month 3 / Q3', Baseline: cash_trajectory.quarter_3.base, Scenario: cash_trajectory.quarter_3.scenario },
-      ];
-    }
-
-    // Immediate local computation fallback while initial fetch completes
     const revShift = revChange / 100.0;
     const opexShift = opexChange / 100.0;
-    const impact30 = (curCash * 0.1) * revShift - capexAdj * 0.3;
-    const impact60 = (curCash * 0.2) * revShift - capexAdj * 0.6;
-    const impact90 = (curCash * 0.3) * revShift - capexAdj * 1.0;
+    
+    // Calculate 30-day, 60-day, and 90-day scenario impacts including OpEx shift
+    const revDelta90 = (curCash * 0.35) * revShift;
+    const opexDelta90 = (curOpex * 0.35) * opexShift;
+    const totalImpact90 = revDelta90 - opexDelta90 - capexAdj;
+
+    const impact30 = totalImpact90 * 0.33;
+    const impact60 = totalImpact90 * 0.66;
+    const impact90 = totalImpact90;
+
+    const q1Base = curCash + (baseFc90d - curCash) * 0.33;
+    const q2Base = curCash + (baseFc90d - curCash) * 0.66;
+    const q3Base = baseFc90d;
 
     return [
       { period: 'Current', Baseline: curCash, Scenario: curCash },
-      { period: 'Month 1 / Q1', Baseline: curCash + (baseFc90d - curCash) * 0.33, Scenario: curCash + (baseFc90d - curCash) * 0.33 + impact30 },
-      { period: 'Month 2 / Q2', Baseline: curCash + (baseFc90d - curCash) * 0.66, Scenario: curCash + (baseFc90d - curCash) * 0.66 + impact60 },
-      { period: 'Month 3 / Q3', Baseline: baseFc90d, Scenario: baseFc90d + impact90 },
+      { period: 'Month 1 / Q1', Baseline: roundVal(q1Base), Scenario: roundVal(q1Base + impact30) },
+      { period: 'Month 2 / Q2', Baseline: roundVal(q2Base), Scenario: roundVal(q2Base + impact60) },
+      { period: 'Month 3 / Q3', Baseline: roundVal(q3Base), Scenario: roundVal(q3Base + impact90) },
     ];
-  }, [scenarioRes, selectedCompanyId, revChange, opexChange, capexAdj, curCash, baseFc90d]);
+  }, [selectedCompanyId, revChange, opexChange, capexAdj, curCash, baseFc90d, curOpex]);
 
-  const scenario90d = scenarioRes?.scenario_latest?.forecast_cash_90d ?? (chartData[3]?.Scenario || baseFc90d);
-  const deltaImpact = scenarioRes?.summary?.scenario_delta_impact ?? (scenario90d - baseFc90d);
+  function roundVal(v) {
+    return Math.max(0.0, Math.round(v * 100) / 100);
+  }
+
+  const scenario90d = chartData[3]?.Scenario || baseFc90d;
+  const deltaImpact = roundVal(scenario90d - baseFc90d);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 select-none">
       {/* Header */}
       <div className="glass-panel p-5 rounded-xl flex items-center justify-between">
         <div>
@@ -93,7 +107,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Interactive Sliders Panel */}
-        <div className="glass-card p-6 space-y-6">
+        <div className="glass-card p-6 space-y-6 select-none">
           <h3 className="text-lg font-semibold text-white">Adjust Parameters</h3>
 
           {/* Revenue Change Slider */}
@@ -110,7 +124,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
               max="30" 
               value={revChange} 
               onChange={(e) => setRevChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500 touch-none select-none"
             />
             <div className="flex justify-between text-[10px] text-gray-500 mt-1">
               <span>-30% Demand Shock</span>
@@ -133,7 +147,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
               max="20" 
               value={opexChange} 
               onChange={(e) => setOpexChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500 touch-none select-none"
             />
             <div className="flex justify-between text-[10px] text-gray-500 mt-1">
               <span>-20% Cost Cut</span>
@@ -156,7 +170,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
               max="10" 
               value={capexAdj} 
               onChange={(e) => setCapexAdj(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+              className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500 touch-none select-none"
             />
             <div className="flex justify-between text-[10px] text-gray-500 mt-1">
               <span>-10 Cr CapEx Deferral</span>
@@ -196,7 +210,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
             <div className="glass-card p-4">
               <div className="text-xs text-gray-400">Adjusted Net Income</div>
               <div className="text-lg font-bold text-white mt-1">
-                {(scenarioRes?.scenario_latest?.net_income ?? (activeCompanyObj?.net_income || 0)).toFixed(2)} Cr
+                {(scenarioRes?.scenario_latest?.net_income ?? ((activeCompanyObj?.net_income || 0) * (1 + revChange/100.0 - opexChange/100.0))).toFixed(2)} Cr
               </div>
             </div>
           </div>
@@ -206,7 +220,7 @@ export default function ScenarioSimulator({ selectedCompanyId, companies }) {
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart 
-                  key={`chart-${selectedCompanyId}-${revChange}-${opexChange}-${capexAdj}`}
+                  key={`chart-${selectedCompanyId}`}
                   data={chartData} 
                   margin={{ top: 10, right: 30, left: 10, bottom: 5 }}
                 >
